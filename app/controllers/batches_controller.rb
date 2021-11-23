@@ -1,4 +1,9 @@
 class BatchesController < ApplicationController
+  def index
+    @user = current_user
+    @batches = Batch.where(user: current_user)
+  end
+
   def show
     @batch = Batch.find(params[:id])
     @costs = @batch.costs

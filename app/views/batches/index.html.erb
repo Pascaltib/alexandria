@@ -1,0 +1,8 @@
+<h1> Welcome <%= @user.email %> </h1>
+<% @batches.each do |batch| %>
+  <div>
+    <%= link_to batch_path(batch) do %>
+      <%= batch.name %>
+    <% end %>
+  </div>
+<% end %>
