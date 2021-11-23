@@ -1,7 +1,7 @@
-class BatchesController < ApplicationController
-  def show
-    @batch = Batch.find(params[:id])
-    @costs = @batch.costs
+class UsersController < ApplicationController
+  def index
+    @batch = Batch.find(params[:batch_id])
+
     @students = []
     User.where(admin: false).each do |student|
       @batch.bookings.each do |booking|

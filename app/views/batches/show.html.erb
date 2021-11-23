@@ -1,0 +1,18 @@
+<h1>You are in the <%=@batch.name  %> show/dashboard page </h1>
+<br>
+<h2>Here are your costs</h2>
+<% @costs.each do |cost| %>
+  <div>
+  <%= cost.name %> - <%= cost.amount %>
+  </div>
+<% end %>
+<br>
+
+
+
+<h2>Here are your students</h2>
+<% @students.each do |student| %>
+  <div>
+  <%= student.email %>
+  </div>
+<% end %>
