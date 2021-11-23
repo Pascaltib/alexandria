@@ -1,23 +1,28 @@
-<h1>Edit Student Profile</h1>
-  <div class="field">
-    <%= form.label :user.first_name %>
-    <%= form.text_field :student.first_name %>
+<h2>Edit</h2>
+
+<%= simple_form_for([@batch, @user]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :email, required: true, autofocus: true %>
+
+    <%= f.input :password,
+                hint: "leave it blank if you don't want to change it",
+                required: false,
+                input_html: { autocomplete: "new-password" } %>
+    <%= f.input :password_confirmation,
+                required: false,
+                input_html: { autocomplete: "new-password" } %>
+    <%= f.input :current_password,
+                hint: "we need your current password to confirm your changes",
+                required: true,
+                input_html: { autocomplete: "current-password" } %>
   </div>
 
-  <div class="field">
-    <%= form.label :user.last_name %>
-    <%= form.text_field :student.last_name %>
+  <div class="form-actions">
+    <%= f.button :submit, "Update" %>
   </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :user.email %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<% end %>
 
 
-<%= render 'form', user: @students %>
-<%= link_to 'Back',  %>
+<%= link_to "Back", :back %>
