@@ -1,0 +1,29 @@
+<%# delete this %>
+<br>
+<br>
+<%# ///////delete this %>
+
+
+
+<h1><strong> Welcome to students page <%= @batch.name %></strong></h1>
+<% @students.each do |student| %>
+
+<div>
+  <img src="" alt="">
+  <div>
+    <%= student.first_name %>
+    <%= student.last_name %>
+    <%= student.email %>
+  </div>
+</div>
+<% end %>
+
+<%# delete this %>
+<br>
+<br>
+<%# ///////delete up to this %>
+
+
+<a href="">Add Student</a>
+<a href="">Edit Student</a>
+<a href="">Delete Student</a>

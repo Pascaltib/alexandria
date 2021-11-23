@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :batches, except: %i[destroy edit update] do
     resources :bookings, only: [:create]
     resources :costs, only: %i[create show update]
+    resources :users, only: [:index]
   end
-  resources :users, only: [:show]
+
 end
