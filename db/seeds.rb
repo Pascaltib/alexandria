@@ -23,17 +23,19 @@ User.create!(
     admin: true
   }
 )
-
-20.times do
+count = 10
+11.times do
   User.create!(
     {
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
       email: Faker::Internet.email,
       password: "password",
-      admin: false
+      admin: false,
+      image_url: "https://cdn.devdojo.com/images/june2021/avt-#{count}.jpg"
     }
   )
+  count += 1
 end
 
 puts "Database created!"
