@@ -1,18 +1,31 @@
 <h1>You are in the <%=@batch.name  %> show/dashboard page </h1>
-<br>
-<h2>Here are your costs</h2>
+
+<h2>Here are your costs: </h2>
 <% @costs.each do |cost| %>
-  <div>
-  <%= cost.name %> - <%= cost.amount %>
+  <div class="flex pl-3">
+    <div class="text-lg">
+      <%= cost.name %> - <%= cost.amount %>
+    </div>
+    <%= simple_form_for [@batch, cost], method: "patch", html: { class: "pl-4"} do |f| %>
+        <%= f.input :name %>
+        <%= f.input :amount %>
+        <%= f.button :submit %>
+    <% end %>
+    <div class="ml-24 flex items-center">
+      <%= simple_form_for [@batch, cost], method: :delete do |f| %>
+        <%= f.button :submit, "Delete" %>
+      <% end %>
+    </div>
   </div>
 <% end %>
-<br>
+
+<%= simple_form_for [@batch, @cost], class: "mt-5" do |f| %>
+      <%= f.input :name %>
+      <%= f.input :amount %>
+      <%= f.button :submit, "Add new cost" %>
+      <% end %>
 
 
-
-<h2>Here are your students</h2>
-<% @students.each do |student| %>
-  <div>
-  <%= student.email %>
-  </div>
+<%= link_to batch_users_path(@batch) do%>
+<div class="p-2 bg-indigo-500 rounded w-48">Click here to see this batches' students</div>
 <% end %>
