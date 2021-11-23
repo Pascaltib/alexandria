@@ -6,3 +6,8 @@
     <% end %>
   </div>
 <% end %>
+
+<%= simple_form_for @batch do |f| %>
+  <%= f.input :name %>
+  <%= f.button :submit %>
+<% end %>
