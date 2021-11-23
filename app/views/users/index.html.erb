@@ -1,0 +1,28 @@
+<div>
+  <h3 class="page-title">Students</h3>
+  <div>
+    <div>
+      <div>
+
+
+        <% if @students.length == 0 %>
+          <div>
+                <h5>No matches...</h5>
+          </div>
+        <% end %>
+        <% @students.each do |student| %>
+        <%= link_to user_path(student) do %>
+        <div>
+          <div>
+
+            <div>
+              <h5><%= link_to user.student.first_name, user_path(student) %></h5>
+              <h5><%= link_to user.student.last_name, user_path(student) %></h5>
+              <h5><%= link_to user.student.email, user_path(student) %></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
