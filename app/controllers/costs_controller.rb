@@ -19,6 +19,17 @@ class CostsController < ApplicationController
     redirect_to batch_path(@batch)
   end
 
+  def update
+    @batch = Batch.find(params[:batch_id])
+    @cost = Cost.find(params[:id])
+    @costs = @batch.costs
+    if @cost.update(cost_params)
+      redirect_to batch_path(@batch)
+    else
+      render "batches/show"
+    end
+  end
+
   private
 
   def cost_params
