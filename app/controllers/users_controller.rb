@@ -30,9 +30,10 @@ class UsersController < ApplicationController
 
 
   def update
+    @batch = Batch.find(params[:batch_id])
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to adminpanel_path
+    if @user.update(student_params)
+      redirect_to batch_users_path(@batch)
     else
       render 'edit'
     end
