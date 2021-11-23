@@ -1,35 +1,44 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<section class="w-full px-8 py-16 xl:px-8">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex flex-col items-center md:flex-row justify-center">
+      <div class="w-full mt-16 md:mt-0 md:w-2/5">
+        <div class="relative z-10 h-auto p-8 py-10 overflow-hidden bg-white border-solid border-2 border-gray-100 rounded-lg px-7">
+          <h6 class="mb-6 text-xl text-gray-700 font-medium text-center">Modify <%= resource_name.to_s.humanize %> Info </h6>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+              <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+              <div class="form-inputs">
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
 
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
+                <%= f.input :first_name,
+                          required: true,
+                          autofocus: true,
+                          label: false,
+                          placeholder: "First Name",
+                          input_html: { autocomplete: "off" }, class: "block w-full px-4 py-3 mb-4 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-blue-500 focus:outline-none"%>
+                <%= f.input :last_name,
+                          required: true,
+                          autofocus: true,
+                          label: false,
+                          placeholder: "Last Name",
+                          input_html: { autocomplete: "off" }, class: "block w-full px-4 py-3 mb-4 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-blue-500 focus:outline-none"%>
+                <%= f.input :email,
+                          required: true,
+                          autofocus: true,
+                          label: false,
+                          placeholder: "Email",
+                          input_html: { autocomplete: "off" }, class: "block w-full px-4 py-3 mb-4 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-blue-500 focus:outline-none"%>
+              </div>
+
+              <div class="form-actions block">
+                <%= f.button :submit, "Update", class: "w-full px-3 py-4 text-lg bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg" %>
+              </div>
+            <% end %>
+
+      <p class="w-full mt-4 text-sm text-center text-gray-800 hover:text-gray-500 hover:underline"><%= link_to "Delete Student", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+      <p class="w-full mt-4 text-sm text-center text-gray-800 hover:text-gray-500 hover:underline"> <%= link_to "Go Back", :back %> </p>
+      </div>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</section>
