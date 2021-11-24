@@ -1,6 +1,3 @@
-
-
-
 <h1>
   <strong> Welcome to students page <%= @batch.name %></strong>
 </h1>
@@ -12,19 +9,19 @@
     <%= student.email %>
   </div>
 
-  <%= link_to %>
-    <div>
-      Add Student
-    </div>
-
   <%= link_to edit_batch_user_path(@batch, student) do%>
     <div>
       Edit
     </div>
   <% end %>
-
-  <%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <div>
-      Remove Student
-    </div>
 <% end %>
+
+
+
+<%# <%= link_to new_user_registration_path(@batch, student) do %>
+  <%# <div>
+    Add Student
+  </div> %>
+<%# <% end %>
+
+<%= link_to 'Remove', @user, method: :delete, data: { confirm: 'Are you sure you want to remove student from batch'} %>

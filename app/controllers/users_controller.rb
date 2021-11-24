@@ -13,15 +13,17 @@ class UsersController < ApplicationController
   end
 
   # create a students
-  def create
-    @batch = Batch.find(params[:batch_id])
-    @user = User.new(student_params)
-    if @user.save
-      redirect_to batch_users_path(@batch)
-    else
-      render 'edit'
-    end
-  end
+  # def create
+  #   @batch = Batch.find(params[:batch_id])
+  #   @user = User.new(student_params)
+  #   @user.batch = @batch
+  #   if @user.save
+  #     redirect_to batch_users_path(@batch)
+  #   else
+  #     render "batches/show"
+  #   end
+  # end
+
 
   # to edit students profile
   def edit
@@ -41,10 +43,10 @@ class UsersController < ApplicationController
 
   # to remove student
   def destroy
+    # @user = User.find(params[:id])
+    # @user.destroy
     # @batch = Batch.find(params[:batch_id])
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to batch_users_path(@batch)
+    # redirect_to batch_users_path(@batch)
   end
 
   private
