@@ -42,3 +42,41 @@
         </div>
     </div>
 </section>
+
+
+<%= line_chart (
+[
+  {
+    name: "total revenue",
+    data: {
+            3.days.ago => 0,
+            2.days.ago => 10,
+            1.days.ago => 30
+          }
+  },
+  {
+    name: "total cost",
+    data: {
+            3.days.ago => 3,
+            2.days.ago => 4,
+            1.days.ago => 10
+          }
+  },
+  {
+    name: "variable cost",
+    data: {
+            3.days.ago => 0,
+            2.days.ago => 8,
+            1.days.ago => 12
+          }
+  },
+  {
+    name: "Net profit",
+    data: {
+            3.days.ago => 0,
+            2.days.ago => 9,
+            1.days.ago => 15
+          }
+  }
+]
+)%>
