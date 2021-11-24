@@ -1,13 +1,49 @@
-<h1> Welcome <%= @user.email %> </h1>
-<% @batches.each do |batch| %>
-  <div>
-    <%= link_to batch_path(batch) do %>
-      <%= batch.name %>
-    <% end %>
-  </div>
-<% end %>
+<section class="py-20 bg-white">
+    <div class="container max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold tracking-tight text-center">Welcome back <%= @user.first_name %>!</h2>
+        <p class="mt-2 text-lg text-center text-gray-600">Create and Access your Batches.</p>
 
-<%= simple_form_for @batch do |f| %>
-  <%= f.input :name %>
-  <%= f.button :submit %>
-<% end %>
+<!-- Create Batch Modal -->
+
+<section class="w-full px-8 py-8 xl:px-8">
+  <div class="max-w-2xl mx-auto">
+    <div class="flex flex-col items-center md:flex-row justify-center">
+      <div class="w-full mt-4 md:mt-0 md:w-2/5">
+        <div class="relative z-10 h-auto p-6 overflow-hidden bg-white border-solid border-2 border-gray-100 rounded-lg">
+        <h6 class="mb-6 text-xl font-medium text-center">Add a new Batch</h6>
+          <%= simple_form_for @batch do |f| %>
+          <div class="flex flex-col items-center md:flex-row justify-center">
+            <div>
+            <%= f.input :name,
+                        required: false,
+                        autofocus: true,
+                        label: false,
+                        placeholder: "Batch Name",
+                        input_html: { autocomplete: 'off' }, class: "block w-full px-4 my-0 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-black focus:outline-none" %>
+            <div class="">
+              <%= f.button :submit, "Add", class: "w-full px-1 text-sm my-0 bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg" %>
+            </div>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 1 -->
+        <div class="grid grid-cols-1 gap-4 mt-10 sm:grid-cols-2 lg:grid-cols-3 px-8">
+            <% @batches.each do |batch| %>
+              <%= link_to batch_path(batch) do %>
+
+            <div class="relative flex flex-col items-center justify-between col-span-3 px-4 py-4 space-y-2 overflow-hidden bg-gray-100 sm:rounded-xl">
+                <div class="py-3 px-5 text-white bg-black rounded-full">
+                  <%= batch.name.chars.first %></h4>
+                </div>
+                <h4 class="text-xl font-medium text-gray-700"><%= batch.name %></h4>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+    </div>
+</section>
