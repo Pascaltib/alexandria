@@ -1,37 +1,154 @@
-<div class="text-2xl mb-5">You are in the <%=@batch.name  %> show/dashboard page </div>
-<div class="text-2xl">Tuition is <%=@batch.tuition_cost  %> </div>
-<div class="text-2xl">You need <%= @break_even %> students to break even </div>
-<div class="text-2xl">Your net income is: <%= @current_net_income %></div>
-<h2>Here are your costs: </h2>
-<div class="flex">
-  <% @costs.each do |cost| %>
-    <div class="flex pl-3 border">
-      <div class="text-lg">
-        <%= cost.name %> - <%= cost.amount %>
-      </div>
-      <%= simple_form_for [@batch, cost], method: "patch", html: { class: "pl-4"} do |f| %>
-          <%= f.input :name %>
-          <%= f.input :amount %>
-          <%= f.input :kind, collection: ["Fixed", "Variable"], selected: cost.kind%>
-          <%= f.button :submit %>
-      <% end %>
-      <div class="ml-16 flex items-center">
-        <%= simple_form_for [@batch, cost], method: :delete do |f| %>
-          <%= f.button :submit, "Delete" %>
-        <% end %>
+<!-- Header // Do Not Touch -->
+
+<section class="pt-10">
+  <div class="container max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold tracking-tight text-center"><%= @batch.name %> Dashboard</h2>
+    <p class="mt-2 text-lg text-center text-gray-600">Review your Students, Costs, and Break Even Point.</p>
+    <div class="button-center text-center"><%= link_to batch_users_path(@batch) do %>
+      <button class="w-1/4 text-sm bg-black font-medium text-center cursor-pointer py-2 px-4 hover:bg-gray-600 text-white my-3 rounded-lg"><%= @batch.name %> Students</button>
+    <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- End of Header -->
+
+<div class="thebiggestcontainer">
+
+<!-- Full Cards Container // Do Not Touch -->
+<div class="container grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto gap-8">
+
+  <!-- Numbers Cards Container // Do Not Touch -->
+  <section class="mt-10 grid-cols-1 px-8 grid gap-4 bg-white px-4 pb-8 space-y-1 overflow-hidden rounded-xl border-2 border-gray-50">
+    <div class="grid grid-cols-1 gap-2 mt-10 sm:grid-cols-2 lg:grid-cols-3 px-8">
+      <div class="relative flex flex-col items-center justify-between col-span-3 bg-white px-4 py-2 space-y-2 overflow-hidden rounded-xl border-2 border-gray-100">
+        <div class="py-2 px-5 text-white bg-red-400 rounded-full">
+          <h4><%= @batch.tuition_cost %>€</h4>
+        </div>
+        <h4 class="text-sm font-small text-gray-700">Tutition Cost</h4>
       </div>
     </div>
-  <% end %>
+
+    <div class="grid grid-cols-1 gap-2 mt-10 sm:grid-cols-2 lg:grid-cols-3 px-8">
+      <div class="relative flex flex-col items-center justify-between col-span-3 bg-white px-4 py-2 space-y-2 overflow-hidden rounded-xl border-2 border-gray-100">
+        <div class="py-2 px-5 text-white bg-gray-600 rounded-full">
+          <h4><%= @break_even %></h4>
+        </div>
+        <h4 class="text-sm font-small text-center text-gray-700">Amount of students to break even</h4>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap- mt-10 sm:grid-cols-2 lg:grid-cols-3 px-8">
+      <div class="relative flex flex-col items-center justify-between col-span-3  bg-white px-4 py-2 space-y-2 overflow-hidden rounded-xl border-2 border-gray-100">
+        <% if @current_net_income > 0 %>
+          <div class="py-2 px-5 text-white bg-green-300 rounded-full">
+            <h4><%= @current_net_income %></h4>
+          </div>
+        <% elsif @current_net_income < 0 %>
+          <div class="py-2 px-5 text-white bg-red-400 rounded-full">
+            <h4><%= @current_net_income %></h4>
+          </div>
+        <% else %>
+          <div class="py-2 px-5 text-gray-700 bg-gray-400 rounded-full">
+            <h4><%= @current_net_income %></h4>
+          </div>
+        <% end %>
+        <h4 class="text-sm font-small text-gray-700">Net income</h4>
+      </div>
+    </div>
+  </section>
+  <!-- End of Numbers Cards Container -->
+
+  <!-- Graph Container // Do Not Touch -->
+  <section class="mt-10 grid-cols-1 px-8 grid gap-4 bg-white px-4 pb-8 space-y-1 overflow-hidden rounded-xl border-2 border-gray-50">
+    <div class="grid grid-cols-1 gap- mt-10 sm:grid-cols-2 lg:grid-cols-1 px-8">
+      <h6 class="text-xl font-medium text-center">Graph Container</h6>
+    </div>
+  </section>
+  <!-- End of Numbers Cards Container -->
+
+
+  <!-- Add a New Cost Card Container // Do Not Touch -->
+  <section class="grid grid-cols-1 gap-4 mt-10 px-4 py-4 overflow-hidden rounded-xl border-2 border-gray-50 bg-white">
+
+    <!-- Add a New Cost -->
+    <section class="w-full content-center	">
+      <div class="p-2">
+        <div class="flex flex-col items-center md:flex-row justify-center">
+          <div class="w-full">
+            <div class="relative z-10 h-auto p-6 overflow-hidden bg-white border-solid rounded-lg">
+            <h6 class="mb-6 text-xl font-medium text-center">Add a new Cost</h6>
+
+
+                <%= simple_form_for [@batch, @cost], class: "mt-5" do |f| %>
+          <%= f.input :name,
+                      autofocus: true,
+                      label: false,
+                      placeholder: "Name",
+                      input_html: { autocomplete: "off" }, class: "block w-full px-4 my-0 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-black focus:outline-none" %>
+
+          <%= f.input :amount,
+                      autofocus: true,
+                      label: false,
+                      placeholder: "Amount",
+                      input_html: { autocomplete: "off" }, class: "block w-full px-4 my-0 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-black focus:outline-none" %>
+
+          <%= f.input :kind, collection: ["Fixed", "Variable"], prompt: "Type",
+                      autofocus: true,
+                      label: false,
+                      input_html: { autocomplete: "off" }, class: "block w-full px-4 my-0 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-black focus:outline-none" %>
+
+                  <%= f.button :submit, "Add new cost", class: "w-full px-1 text-sm my-0 bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg" %>
+                </div>
+              </div>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End of Add a new cost -->
+  </section>
+  <!-- End of Add a New Cost Card Container -->
+
+<div class="rounded-xl container mx-auto mt-8 mb-16 bg-white border-2 border-gray-50 py-8">
+  <h6 class="text-xl font-medium text-center">My Costs</h6>
+
+ <% @costs.each do |cost| %>
+                <%= simple_form_for [@batch, cost], method: "patch", html: { class: "pl-4" } do |f| %>
+                <div class="flex flex-col items-center md:flex-row justify-center">
+                  <div>
+                  <%= f.input :name,
+                              autofocus: true,
+                              label: false,
+                              placeholder: "Name",
+                              input_html: { autocomplete: "off" }, class: "block w-full px-4 my-0 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-black focus:outline-none" %>
+                  <%= f.input :amount,
+                              autofocus: true,
+                              label: false,
+                              placeholder: "Amount",
+                              input_html: { autocomplete: "off" }, class: "block w-full px-4 my-0 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-black focus:outline-none" %>
+                  <%= f.input :kind, collection: ["Fixed", "Variable"], selected: cost.kind,
+                              autofocus: true,
+                              label: false,
+                              placeholder: "Type",
+                              input_html: { autocomplete: "off" }, class: "block w-full px-4 my-0 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-black focus:outline-none" %>
+                  <div>
+                    <%= f.button :submit, "Update", class: "w-full px-1 text-sm my-0 bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg" %>
+                  </div>
+                <% end %>
+
+                <div class="form-control block">
+                  <%= simple_form_for [@batch, cost], method: :delete do |f| %>
+                    <%= f.button :submit, "Delete", class: "w-full px-1 text-sm my-0 bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg" %>
+                <% end %>
+
+              <% end %>
+              </div>
+
 </div>
-
-<%= simple_form_for [@batch, @cost], class: "mt-5" do |f| %>
-      <%= f.input :name %>
-      <%= f.input :amount %>
-      <%= f.input :kind, collection: ["Fixed", "Variable"] %>
-      <%= f.button :submit, "Add new cost" %>
-      <% end %>
+<!-- End of Full Cards Container -->
 
 
-<%= link_to batch_users_path(@batch) do%>
-<div class="p-2 bg-indigo-500 rounded w-48">Click here to see this batches' students</div>
-<% end %>
+</div>
+<!-- End of The Biggest Container -->
