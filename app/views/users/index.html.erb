@@ -8,37 +8,36 @@
     <span class="absolute bottom-0 left-0"> </span>
 
     <div class="relative px-16 mx-auto max-w-7xl">
-        <p class="font-medium tracking-wide text-blue-500 uppercase">Welcome to students page <%= @batch.name %></p>
-        <h2 class="relative max-w-lg mt-5 mb-10 text-4xl font-semibold leading-tight lg:text-5xl">Meet all the faces<br>of your batch</h2>
-        <div class="grid w-full grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-4">
-            <div class="flex flex-col items-center justify-center col-span-1">
-                <% @students.each do |student| %>
-                <div class="relative p-5">
-                    <div class="absolute z-10 w-full h-full -mt-5 -ml-5 rounded-full rounded-tr-none bg-green-50"></div>
-                    <img class="relative z-20 w-full rounded-full" src="https://cdn.devdojo.com/images/june2021/avt-16.jpg">
-                </div>
-                <div class="mt-3 space-y-2 text-center">
-                    <div class="space-y-1 text-lg font-medium leading-6">
-                        <h3><%= student.first_name %> <%= student.last_name %></h3>
-                        <p class="text-blue-600"><%= student.email %></p>
-                    </div>
-
-                    <%# edit student %>
-                    <%= link_to edit_batch_user_path(@batch, student) do%>
-                      <p class="w-full mt-4 text-sm text-center text-gray-800 hover:text-gray-500 hover:underline	"> Edit </p>
-                    <% end %>
-                    <%= link_to "Remove student", batch_booking_path(@batch,student), method: :delete, data: {confirm: "Are you sure?"} %>
-                    <% end %>
-
-                    <%# add student %>
-                    <div>
-                      <%= simple_form_for ([@batch, @booking]) do |f| %>
-                      <%= f.association :user, collection: @all_students %>
-                      <%= f.button :submit, "Add students" %>
-                      <% end %>
-                    </div>
-                </div>
+      <p class="font-medium tracking-wide text-blue-500 uppercase">Welcome to students page <%= @batch.name %></p>
+      <h2 class="relative max-w-lg mt-5 mb-10 text-4xl font-semibold leading-tight lg:text-5xl">Meet all the faces<br>of your batch</h2>
+      <div class="grid w-full grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-4">
+        <% @students.each do |student| %>
+          <div class="flex flex-col items-center justify-center col-span-1">
+            <div class="relative p-5">
+                <div class="absolute z-10 w-full h-full -mt-5 -ml-5 rounded-full rounded-tr-none bg-green-50"></div>
+                <img class="relative z-20 w-full rounded-full" src="<%= student.image_url %>">
             </div>
-        </div>
+            <div class="mt-3 space-y-2 text-center">
+              <div class="space-y-1 text-lg font-medium leading-6">
+                  <h3><%= student.first_name %> <%= student.last_name %></h3>
+                  <p class="text-blue-600"><%= student.email %></p>
+              </div>
+
+              <%# edit student %>
+              <%= link_to edit_batch_user_path(@batch, student) do%>
+                <p class="w-full mt-4 text-sm text-center text-gray-800 hover:text-gray-500 hover:underline	"> Edit </p>
+              <% end %>
+              <%= link_to "Remove student", batch_booking_path(@batch,student), method: :delete, data: {confirm: "Are you sure?"} %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <%# add student %>
+      <div class="flex justify-center mt-3">
+        <%= simple_form_for ([@batch, @booking]), html: { class: 'flex flex-col items-center w-2/5' }  do |f| %>
+        <%= f.association :user, include_blank: false, collection: @all_students, label_method: lambda { |user| "#{user.first_name} #{user.last_name}" }, :value_method => :id, input_html: { style: 'width:200px;' }, prompt: "Select Student"  %>
+        <%= f.button :submit, "Add student", class: "w-3/12"%>
+        <% end %>
+      </div>
     </div>
 </section>
