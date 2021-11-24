@@ -1,4 +1,6 @@
-<section class="py-20 bg-white">
+<!-- Header -->
+
+<section class="py-10 bg-white">
     <div class="container max-w-6xl mx-auto">
         <h2 class="text-4xl font-bold tracking-tight text-center">Welcome back <%= @user.first_name %>!</h2>
         <p class="mt-2 text-lg text-center text-gray-600">Create and Access your Batches.</p>
@@ -35,7 +37,7 @@
   </div>
 </section>
 
-<!-- Section 1 -->
+<!-- Batch Card -->
         <div class="grid grid-cols-1 gap-4 mt-10 sm:grid-cols-2 lg:grid-cols-3 px-8">
             <% @batches.each do |batch| %>
               <%= link_to batch_path(batch) do %>
