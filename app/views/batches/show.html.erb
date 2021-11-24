@@ -1,27 +1,33 @@
-<div class="font-lg">You are in the <%=@batch.name  %> show/dashboard page </div>
-
+<div class="text-2xl mb-5">You are in the <%=@batch.name  %> show/dashboard page </div>
+<div class="text-2xl">Tuition is <%=@batch.tuition_cost  %> </div>
+<div class="text-2xl">You need <%= @break_even %> students to break even </div>
+<div class="text-2xl">Your net income is: <%= @current_net_income %></div>
 <h2>Here are your costs: </h2>
-<% @costs.each do |cost| %>
-  <div class="flex pl-3">
-    <div class="text-lg">
-      <%= cost.name %> - <%= cost.amount %>
-    </div>
-    <%= simple_form_for [@batch, cost], method: "patch", html: { class: "pl-4"} do |f| %>
-        <%= f.input :name %>
-        <%= f.input :amount %>
-        <%= f.button :submit %>
-    <% end %>
-    <div class="ml-24 flex items-center">
-      <%= simple_form_for [@batch, cost], method: :delete do |f| %>
-        <%= f.button :submit, "Delete" %>
+<div class="flex">
+  <% @costs.each do |cost| %>
+    <div class="flex pl-3 border">
+      <div class="text-lg">
+        <%= cost.name %> - <%= cost.amount %>
+      </div>
+      <%= simple_form_for [@batch, cost], method: "patch", html: { class: "pl-4"} do |f| %>
+          <%= f.input :name %>
+          <%= f.input :amount %>
+          <%= f.input :kind, collection: ["Fixed", "Variable"], selected: cost.kind%>
+          <%= f.button :submit %>
       <% end %>
+      <div class="ml-16 flex items-center">
+        <%= simple_form_for [@batch, cost], method: :delete do |f| %>
+          <%= f.button :submit, "Delete" %>
+        <% end %>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
 <%= simple_form_for [@batch, @cost], class: "mt-5" do |f| %>
       <%= f.input :name %>
       <%= f.input :amount %>
+      <%= f.input :kind, collection: ["Fixed", "Variable"] %>
       <%= f.button :submit, "Add new cost" %>
       <% end %>
 
