@@ -23,20 +23,22 @@
                         <p class="text-blue-600"><%= student.email %></p>
                     </div>
 
+                    <%# edit student %>
                     <%= link_to edit_batch_user_path(@batch, student) do%>
                       <p class="w-full mt-4 text-sm text-center text-gray-800 hover:text-gray-500 hover:underline	"> Edit </p>
                     <% end %>
+                    <%= link_to "Remove student", batch_booking_path(@batch,student), method: :delete, data: {confirm: "Are you sure?"} %>
                     <% end %>
 
+                    <%# add student %>
+                    <div>
+                      <%= simple_form_for ([@batch, @booking]) do |f| %>
+                      <%= f.association :user, collection: @all_students %>
+                      <%= f.button :submit, "Add students" %>
+                      <% end %>
+                    </div>
                 </div>
-                <%# add student %>
-
             </div>
         </div>
     </div>
 </section>
-
-                    <%= simple_form_for ([@batch, @booking]) do |f| %>
-                    <%= f.input :user, collection: @all_students %>
-                    <%= f.button :submit %>
-                    <% end %>

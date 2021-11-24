@@ -11,9 +11,10 @@ class UsersController < ApplicationController
       end
     end
 
-    @all_students = User.where(admin: false).map do |student|
-      "#{student.first_name} + #{student.last_name}"
-    end
+    @all_students = User.where(admin: false)
+    # .map do |student|
+    #   "#{student.first_name} + #{student.last_name}"
+    # end
   end
 
 
@@ -33,12 +34,11 @@ class UsersController < ApplicationController
     end
   end
 
-  # to remove student
   def destroy
     @user = User.find(params[:id])
     @user.destroy
     # @batch = Batch.find(params[:batch_id])
-    redirect_to batch_users_path(@batch)
+    redirect_to batch_users_path
   end
 
   private

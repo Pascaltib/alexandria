@@ -1,15 +1,22 @@
 class BookingsController < ApplicationController
   def create
-    @user = current_user
-    @batches = current_user.batches
-    @booking = Booking.new(booking_params)
-    @batch.user = @user
-    @booking.save
-    # if @booking.save
-    #   redirect_to batch_bookings_path
-    # else
-    #   render :????
-    # end
+    @batch = Batch.find(params[:batch_id])
+    @user = User.find(params[:booking][:user_id])
+    @booking = Booking.new(batch: @batch, user: @user)
+    if @booking.save
+      redirect_to batch_users_path
+    else
+      render :index
+    end
+  end
+
+  # to remove student
+  def destroy
+    @batch = Batch.find(params[:batch_id])
+    # @user = User.find(params[:booking][:user_id])
+    @booking = Booking.where(user_id: params[:id], batch_id: params[:batch_id])[0]
+    @booking.destroy
+    redirect_to batch_users_path(@batch)
   end
 
   private
