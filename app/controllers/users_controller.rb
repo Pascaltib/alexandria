@@ -17,7 +17,6 @@ class UsersController < ApplicationController
     # end
   end
 
-
   # to edit students profile
   def edit
     @batch = Batch.find(params[:batch_id])
