@@ -29,7 +29,14 @@
                     <% end %>
 
                 </div>
+                <%# add student %>
+
             </div>
         </div>
     </div>
 </section>
+
+                    <%= simple_form_for ([@batch, @booking]) do |f| %>
+                    <%= f.input :user, collection: @all_students %>
+                    <%= f.button :submit %>
+                    <% end %>
