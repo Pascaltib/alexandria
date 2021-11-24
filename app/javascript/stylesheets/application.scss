@@ -3,7 +3,15 @@
 
 /*! purgecss start ignore */
 // @import "components/buttons";
-
+.close-modal-x:before {
+  content: '✕';
+}
+.close-modal-x {
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  cursor: pointer;
+}
 // body {
 //   @apply min-h-screen;
 // }
