@@ -3,6 +3,7 @@ class BatchesController < ApplicationController
     @user = current_user
     @batches = @user.batches
     @batch = Batch.new
+    @hidden = "hidden"
   end
 
   def show
@@ -15,6 +16,14 @@ class BatchesController < ApplicationController
         @students << student if booking.user_id == student.id
       end
     end
+
+    # for the graph
+    @total_student = @batch.bookings.count
+    @fixed_cost = @batch.costs.where(kind: "Fixed").sum(&:amount)
+    @variable_cost = @batch.costs.where(kind: "Variable").sum(&:amount)
+    @total_cost = @fixed_cost + @variable_cost
+    @total_revenue = @batch.tuition_cost - @total_cost
+    @revenue = @batch.tuition_cost
     @break_even = break_even_calc(@batch).round(2)
     @current_net_income = net_income_calc(@batch).round(2)
   end
@@ -27,6 +36,7 @@ class BatchesController < ApplicationController
     if @batch.save
       redirect_to batches_path
     else
+      @hidden = ""
       render :index
     end
   end
