@@ -61,55 +61,46 @@
 
   <!-- Graph Container // Do Not Touch -->
   <section class="mt-10 grid-cols-1 px-8 grid gap-4 bg-white px-4 pb-8 space-y-1 overflow-hidden rounded-xl shadow-2xl">
-    <div class="grid grid-cols-1 gap- mt-10 sm:grid-cols-2 lg:grid-cols-1 px-8">
+    <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 px-4">
       <h6 class="text-xl font-medium text-center">Graph Container</h6>
 
 
-      <%# @variable_cost = quantity * total_variable_cost
-
-      @fixed_cost = total_fixed_cost
-
-      @total_cost = total_variable_cost + total_fixed_cost
-
-      @total_revenue = (quantity * variable_revenue) - (total_fixed_cost + total_variable_cost) %>
-        <%= line_chart (
-        [
-          {
-            name: "total revenue",
-            data: {
-                    @total_revenue => 15,
-                    @total_revenue => 35
-                  },color: "#19CF00"
-          },
-        #   {
-        #     name: "total cost(variable + fixed)",
-        #     data: {
-        #             1 => 0,
-        #             1 => 29
-        #           },color: "#EE3817"
-        #   },
-        #   {
-        #     name: "fixed cost",
-        #     data: {
-        #             2 => 25,
-        #             2 => 25
-        #           },color: "#56504F"
-        #   },
-        #   {
-        #     name: "variable cost",
-        #     data: {
-        #             3 => 0,
-        #             3 => 10
-        #           },color: "#F7ED0B"
-        #   }
-        ]
-        )
-        # ), points: false, curve: false,
-        #     min: -100, max: 50,
-        #     xtitle: "Student count",
-        #     ytitle: "Rate",
-        #     loading: "Loading..."
-            %>
+      
+        <%= line_chart ([
+                  {
+                    name: "total revenue",
+                    data: {
+                                @total_revenue => 15,
+                                @total_revenue => 35,
+                              }, color: "#19CF00",
+                      },
+                      {
+                        name: "total cost(variable + fixed)",
+                        data: {
+                                1 => 0,
+                                1 => 29,
+                              }, color: "#EE3817",
+                      },
+                      {
+                        name: "fixed cost",
+                        data: {
+                                2 => 25,
+                                2 => 25,
+                              }, color: "#56504F",
+                        },
+                        {
+                          name: "variable cost",
+                          data: {
+                                3 => 0,
+                                3 => 10,
+                              }, color: "#F7ED0B",
+                        },
+                      ]),
+                      points: false, curve: false,
+                      min: -100, max: 50,
+                      xtitle: "Student count",
+                      ytitle: "Rate",
+                      loading: "Loading..." %>
 
     </div>
   </section>
@@ -128,7 +119,7 @@
             <h6 class="mb-6 text-xl font-medium text-center">Add a new Cost</h6>
 
 
-                <%= simple_form_for [@batch, @cost], class: "mt-5" do |f| %>
+          <%= simple_form_for [@batch, @cost], class: "mt-5" do |f| %>
           <%= f.input :name,
                       autofocus: true,
                       label: false,
@@ -196,35 +187,34 @@
 
         <tbody>
           <% @costs.each do |cost| %>
-          <tr class="border-b-2 text-center py-0">
-            <th class="py-0 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center text-blueGray-700 ">
-              <%= cost.name %>
-            </th>
-            <td class="py-0 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs text-center whitespace-nowrap">
-              <%= cost.kind %>
-            </td>
-            <td class="py-0 border-t-0 px-6 align-center border-l-0 border-r-0 text-xs text-center whitespace-nowrap">
-              <%= cost.amount %>
-            </td>
-            <td class="py-0 border-t-0 px-3 align-center text-right border-l-0 border-r-0 text-xs whitespace-nowrap">
-              <div>
-              <button type="submit" class="px-1 my-0 bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg show-modal">Update</button>
-              </div>
-            </td>
-            <td class="py-0 border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-            <%= simple_form_for [@batch, cost], method: :delete do |f| %>
-                <%= f.button :submit, "Delete", class: "px-1 my-0 bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg" %>
-                <% end %>
-            </td>
-          </tr>
+            <tr class="border-b-2 text-center py-0">
+              <th class="py-0 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center text-blueGray-700 ">
+                <%= cost.name %>
+              </th>
+              <td class="py-0 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs text-center whitespace-nowrap">
+                <%= cost.kind %>
+              </td>
+              <td class="py-0 border-t-0 px-6 align-center border-l-0 border-r-0 text-xs text-center whitespace-nowrap">
+                <%= cost.amount %>
+              </td>
+              <td class="py-0 border-t-0 px-3 align-center text-right border-l-0 border-r-0 text-xs whitespace-nowrap">
+                <div>
+                  <button type="submit" class="px-1 my-0 bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg show-modal">Update</button>
+                </div>
+              </td>
+              <td class="py-0 border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                  <%= simple_form_for [@batch, cost], method: :delete do |f| %>
+                    <%= f.button :submit, "Delete", class: "px-1 my-0 bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg" %>
+                  <% end %>
+              </td>
+            </tr>
             <% end %>
-
         </tbody>
-
       </table>
     </div>
   </div>
 </div>
+<%= render "costform" %>
 
 </section>
 
@@ -236,5 +226,3 @@
 
 </div>
 <!-- End of The Biggest Container -->
-
-<%= render "costform" %>
