@@ -50,33 +50,38 @@
     name: "total revenue",
     data: {
             3.days.ago => 0,
-            2.days.ago => 10,
-            1.days.ago => 30
+            2.days.ago => 30,
+            1.days.ago => 35
+          }, points: false, curve: false
+  },
+  {
+    name: "total cost(variable + fixed)",
+    data: {
+            3.days.ago => 0,
+            2.days.ago => 22,
+            1.days.ago => 29
           }
   },
   {
-    name: "total cost",
+    name: "fixed cost",
     data: {
-            3.days.ago => 3,
-            2.days.ago => 4,
-            1.days.ago => 10
+            3.days.ago => 25,
+            2.days.ago => 25,
+            1.days.ago => 25
           }
   },
   {
     name: "variable cost",
     data: {
             3.days.ago => 0,
-            2.days.ago => 8,
-            1.days.ago => 12
-          }
-  },
-  {
-    name: "Net profit",
-    data: {
-            3.days.ago => 0,
-            2.days.ago => 9,
-            1.days.ago => 15
+            2.days.ago => 5,
+            1.days.ago => 10
           }
   }
 ]
-)%>
+), points: false, curve: false,
+    min: 0, max: 50,
+    xtitle: "Student count",
+    ytitle: "Rate",
+    loading: "Loading..."
+    %>
