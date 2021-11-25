@@ -4,21 +4,25 @@ const modalButtons = () => {
   var showModal = document.querySelector('.show-modal');
   var closeModal = document.querySelectorAll('.close-modal');
 
-  showModal.addEventListener('click', function () {
-    modal.classList.toggle('hidden')
-  });
-
-  closeModal.forEach(close => {
-    close.addEventListener('click', function () {
+  if (showModal){
+    showModal.addEventListener('click', function () {
       modal.classList.toggle('hidden')
     });
-  });
-
-  const updateResultsList = (event) => {
-    event.preventDefault();
-    list.innerHTML = '';
-    const input = document.querySelector('#search-input');
-    fetchMovies(input.value);
+  };
+  if(closeModal){
+    closeModal.forEach(close => {
+      close.addEventListener('click', function () {
+        modal.classList.toggle('hidden')
+      });
+    });
   }
+  if (modal){
+    const updateResultsList = (event) => {
+      event.preventDefault();
+      list.innerHTML = '';
+      const input = document.querySelector('#search-input');
+      fetchMovies(input.value);
+    }
+  };
 }
 export { modalButtons };
