@@ -10,6 +10,17 @@
     <div class="relative px-16 mx-auto max-w-7xl">
       <p class="font-medium tracking-wide text-blue-500 uppercase">Welcome to students page <%= @batch.name %></p>
       <h2 class="relative max-w-lg mt-5 mb-10 text-4xl font-semibold leading-tight lg:text-5xl">Meet all the faces<br>of your batch</h2>
+      <div>
+          <%# -----search box ------ %>
+        <!-- Example single danger button -->
+        <%= form_tag batch_users_path, method: :get, class: "student-search-form" do %>
+        <%= text_field_tag :query, params[:query], autocomplete: "off", class: "form-control search-form-field", placeholder: "Looking for Student..." %>
+        <%= submit_tag "Search", class: "btn btn-primary submit-search"  %>
+        <% end %>
+
+        <%# -----/search box ------ %>
+      </div>
+
       <div class="grid w-full grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-4">
         <% @students.each do |student| %>
           <div class="flex flex-col items-center justify-center col-span-1">
@@ -38,6 +49,7 @@
         <%= f.input :user_id, collection: @all_students, label_method: lambda{ |individual| "#{individual.first_name} #{individual.last_name}" }, :value_method => :id, input_html: { style: 'width:200px;' }, prompt: "Select Student"  %>
         <%# <%= f.association :user, input_html: { class: 'select2' }  %>
         <%= f.button :submit, "Add student", class: "w-3/12"%>
+        <%# this is for back button %>
         <p class="w-full mt-4 text-sm text-center text-gray-800 hover:text-gray-500 hover:underline"> <%= link_to "Go Back", :back %> </p>
         <% end %>
       </div>

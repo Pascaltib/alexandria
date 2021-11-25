@@ -4,6 +4,18 @@ class BatchesController < ApplicationController
     @batches = @user.batches
     @batch = Batch.new
     @hidden = "hidden"
+
+    # search form
+    if params[:query].present?
+      ## pg search
+      sql_query = "batch.user.first_name ILIKE :query \
+        OR batch.user.last_name ILIKE :query \
+        OR batch.user.email ILIKE :query \
+      "
+      @student = User.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @student = User.all.where(:admin == false)
+    end
   end
 
   def show
