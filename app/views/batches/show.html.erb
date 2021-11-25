@@ -176,19 +176,19 @@
       <table class="bg-transparent w-full">
         <thead>
           <tr class="text-center">
-            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
                           Cost name
                         </th>
-          <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+          <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
                           Type
                         </th>
-          <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+          <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
                           Amount
                         </th>
-          <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+          <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
 
                         </th>
-          <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+          <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
 
                         </th>
           </tr>
@@ -197,18 +197,18 @@
         <tbody>
           <% @costs.each do |cost| %>
             <tr class="border-b-2 text-center py-0">
-              <th class="py-0 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center text-blueGray-700 ">
+              <th class="py-0 border-t-0 px-6 align-middle border-l-0 border-r-0 text-md whitespace-nowrap p-4 text-center text-blueGray-700 ">
                 <%= cost.name %>
               </th>
-              <td class="py-0 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs text-center whitespace-nowrap">
+              <td class="py-0 border-t-0 px-6 align-middle border-l-0 border-r-0 text-md text-center whitespace-nowrap">
                 <%= cost.kind %>
               </td>
-              <td class="py-0 border-t-0 px-6 align-center border-l-0 border-r-0 text-xs text-center whitespace-nowrap">
+              <td class="py-0 border-t-0 px-6 align-center border-l-0 border-r-0 text-md text-center whitespace-nowrap">
                 <%= cost.amount %>
               </td>
               <td class="py-0 border-t-0 px-3 align-center text-right border-l-0 border-r-0 text-xs whitespace-nowrap">
                 <div>
-                  <button type="submit" class="px-4 py-3 font-bold my-0 bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg show-modal" data-cost_id="<%=cost.id%>">
+                  <button type="submit" class="px-4 py-3 text-md font-bold my-0 bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg show-modal" data-cost_id="<%=cost.id%>">
                     Update
                   </button>
                 </div>
