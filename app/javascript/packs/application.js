@@ -8,6 +8,9 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+// for graph
+import "chartkick/chart.js"
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
@@ -24,6 +27,7 @@ import "stylesheets/application";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { modalButtons } from '../components/modal_button';
+
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:

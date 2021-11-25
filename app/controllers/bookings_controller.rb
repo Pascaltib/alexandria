@@ -1,7 +1,9 @@
 class BookingsController < ApplicationController
   def create
     @batch = Batch.find(params[:batch_id])
-    @user = User.find(params[:booking][:user_id])
+    unless params[:booking][:user_id] == ''
+      @user = User.find(params[:booking][:user_id])
+    end
     @booking = Booking.new(batch: @batch, user: @user)
     @students = []
     User.where(admin: false).each do |student|
@@ -14,6 +16,8 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to batch_users_path
     else
+      # raise
+      @all_students = User.where(admin: false)
       render "users/index"
     end
   end
