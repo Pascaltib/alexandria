@@ -63,55 +63,47 @@
   <section class="mt-10 grid-cols-1 px-8 grid gap-4 bg-white px-4 pb-8 space-y-1 overflow-hidden rounded-xl border-2 border-gray-50">
     <div class="grid grid-cols-1 gap- mt-10 sm:grid-cols-2 lg:grid-cols-1 px-8">
       <h6 class="text-xl font-medium text-center">Graph Container</h6>
-
-
-      <%# @variable_cost = quantity * total_variable_cost
-
-      @fixed_cost = total_fixed_cost
-
-      @total_cost = total_variable_cost + total_fixed_cost
-
-      @total_revenue = (quantity * variable_revenue) - (total_fixed_cost + total_variable_cost) %>
+        <% @trial = 0 %>
         <%= line_chart (
         [
           {
-            name: "total revenue",
+            name: "Fixed Cost",
             data: {
-                    @total_revenue => 15,
-                    @total_revenue => 35
-                  },color: "#19CF00"
+              @trial => @fixed_cost,
+              20 => @fixed_cost
+            }, color: '#727271'
           },
-        #   {
-        #     name: "total cost(variable + fixed)",
-        #     data: {
-        #             1 => 0,
-        #             1 => 29
-        #           },color: "#EE3817"
-        #   },
-        #   {
-        #     name: "fixed cost",
-        #     data: {
-        #             2 => 25,
-        #             2 => 25
-        #           },color: "#56504F"
-        #   },
-        #   {
-        #     name: "variable cost",
-        #     data: {
-        #             3 => 0,
-        #             3 => 10
-        #           },color: "#F7ED0B"
-        #   }
+          {
+            name: "Variable Cost",
+            data: {
+              @trial => 0,
+               20 => @variable_cost
+            }, color: "#FFFF0D"
+          },
+          {
+            name: "Total Revenue",
+            data: {
+              @trial => 0,
+               20 => @total_revenue
+            }, color: "#0BFE04"
+          },
+           {
+            name: "Total Cost",
+            data: {
+              @trial => @total_cost,
+               20 => @total_revenue
+            }, color: "#FF0B0B"
+          }
         ]
-        )
-        # ), points: false, curve: false,
-        #     min: -100, max: 50,
-        #     xtitle: "Student count",
-        #     ytitle: "Rate",
-        #     loading: "Loading..."
+        ), points: false, curve: false,
+            min: -5000,
+            xtitle: "Student count",
+            ytitle: "Rate",
+            loading: "Loading..."
             %>
 
     </div>
+    <%# raise %>
   </section>
   <!-- End of Numbers Cards Container -->
 
