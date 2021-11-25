@@ -19,9 +19,9 @@
 <div class="container grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto gap-8">
 
   <!-- Numbers Cards Container // Do Not Touch -->
-  <section class="mt-10 grid-cols-1 px-8 grid gap-4 bg-white px-4 pb-8 space-y-1 overflow-hidden rounded-xl border-2 border-gray-50">
+  <section class="mt-10 grid-cols-1 px-8 grid gap-4 bg-white px-4 pb-8 space-y-1 overflow-hidden rounded-xl  shadow-2xl">
     <div class="grid grid-cols-1 gap-2 mt-10 sm:grid-cols-2 lg:grid-cols-3 px-8">
-      <div class="relative flex flex-col items-center justify-between col-span-3 bg-white px-4 py-2 space-y-2 overflow-hidden rounded-xl border-2 border-gray-100">
+      <div class="relative flex flex-col items-center justify-between col-span-3 bg-white px-4 py-2 space-y-2 overflow-hidden rounded-xl">
         <div class="py-2 px-5 text-white bg-red-400 rounded-full">
           <h4><%= @batch.tuition_cost %>€</h4>
         </div>
@@ -30,7 +30,7 @@
     </div>
 
     <div class="grid grid-cols-1 gap-2 mt-10 sm:grid-cols-2 lg:grid-cols-3 px-8">
-      <div class="relative flex flex-col items-center justify-between col-span-3 bg-white px-4 py-2 space-y-2 overflow-hidden rounded-xl border-2 border-gray-100">
+      <div class="relative flex flex-col items-center justify-between col-span-3 bg-white px-4 py-2 space-y-2 overflow-hidden rounded-xl">
         <div class="py-2 px-5 text-white bg-gray-600 rounded-full">
           <h4><%= @break_even %></h4>
         </div>
@@ -39,7 +39,7 @@
     </div>
 
     <div class="grid grid-cols-1 gap- mt-10 sm:grid-cols-2 lg:grid-cols-3 px-8">
-      <div class="relative flex flex-col items-center justify-between col-span-3  bg-white px-4 py-2 space-y-2 overflow-hidden rounded-xl border-2 border-gray-100">
+      <div class="relative flex flex-col items-center justify-between col-span-3  bg-white px-4 py-2 space-y-2 overflow-hidden rounded-xl">
         <% if @current_net_income > 0 %>
           <div class="py-2 px-5 text-white bg-green-300 rounded-full">
             <h4><%= @current_net_income %></h4>
@@ -60,8 +60,8 @@
   <!-- End of Numbers Cards Container -->
 
   <!-- Graph Container // Do Not Touch -->
-  <section class="mt-10 grid-cols-1 px-8 grid gap-4 bg-white px-4 pb-8 space-y-1 overflow-hidden rounded-xl border-2 border-gray-50">
-    <div class="grid grid-cols-1 gap- mt-10 sm:grid-cols-2 lg:grid-cols-1 px-8">
+  <section class="mt-10 grid-cols-1 px-8 grid gap-4 bg-white px-4 pb-8 space-y-1 overflow-hidden rounded-xl shadow-2xl">
+    <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 px-4">
       <h6 class="text-xl font-medium text-center">Graph Container</h6>
         <% @trial = 0 %>
         <%= line_chart (
@@ -77,21 +77,21 @@
             name: "Variable Cost",
             data: {
               @trial => 0,
-               20 => @variable_cost
+              20 => @variable_cost
             }, color: "#FFFF0D"
           },
           {
             name: "Total Revenue",
             data: {
               @trial => 0,
-               20 => @total_revenue
+              20 => @total_revenue
             }, color: "#0BFE04"
           },
-           {
+          {
             name: "Total Cost",
             data: {
               @trial => 0,
-               20 => @total_cost
+              20 => @total_cost
             }, color: "#FF0B0B"
           }
         ]
@@ -109,18 +109,18 @@
 
 
   <!-- Add a New Cost Card Container // Do Not Touch -->
-  <section class="grid grid-cols-1 gap-4 mt-10 px-4 py-4 overflow-hidden rounded-xl border-2 border-gray-50 bg-white">
+  <section class="grid grid-cols-1 gap-4 mt-10 px-4 py-4 overflow-hidden rounded-xl bg-white shadow-2xl">
 
     <!-- Add a New Cost -->
     <section class="w-full content-center	">
       <div class="p-2">
         <div class="flex flex-col items-center md:flex-row justify-center">
           <div class="w-full">
-            <div class="relative z-10 h-auto p-6 overflow-hidden bg-white border-solid rounded-lg">
+            <div class="relative z-10 h-auto p-6 overflow-hidden rounded-lg">
             <h6 class="mb-6 text-xl font-medium text-center">Add a new Cost</h6>
 
 
-                <%= simple_form_for [@batch, @cost], class: "mt-5" do |f| %>
+          <%= simple_form_for [@batch, @cost], class: "mt-5" do |f| %>
           <%= f.input :name,
                       autofocus: true,
                       label: false,
@@ -151,40 +151,75 @@
   </section>
   <!-- End of Add a New Cost Card Container -->
 
-<div class="rounded-xl container mx-auto mt-8 mb-16 bg-white border-2 border-gray-50 py-8">
-  <h6 class="text-xl font-medium text-center">My Costs</h6>
+<div class="rounded-xl container mx-auto mt-8 mb-16 bg-white shadow-2xl py-8">
+<!-- Costs Table -->
+<section>
+<div>
+  <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6">
+    <div class="rounded-t mb-0 px-4 py-3 border-0">
+      <div class="flex flex-wrap items-center">
+        <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+          <h3 class="text-xl font-medium text-base">My Costs</h3>
+        </div>
+      </div>
+    </div>
 
- <% @costs.each do |cost| %>
-                <%= simple_form_for [@batch, cost], method: "patch", html: { class: "pl-4" } do |f| %>
-                <div class="flex flex-col items-center md:flex-row justify-center">
-                  <div>
-                  <%= f.input :name,
-                              autofocus: true,
-                              label: false,
-                              placeholder: "Name",
-                              input_html: { autocomplete: "off" }, class: "block w-full px-4 my-0 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-black focus:outline-none" %>
-                  <%= f.input :amount,
-                              autofocus: true,
-                              label: false,
-                              placeholder: "Amount",
-                              input_html: { autocomplete: "off" }, class: "block w-full px-4 my-0 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-black focus:outline-none" %>
-                  <%= f.input :kind, collection: ["Fixed", "Variable"], selected: cost.kind,
-                              autofocus: true,
-                              label: false,
-                              placeholder: "Type",
-                              input_html: { autocomplete: "off" }, class: "block w-full px-4 my-0 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-black focus:outline-none" %>
-                  <div>
-                    <%= f.button :submit, "Update", class: "w-full px-1 text-sm my-0 bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg" %>
-                  </div>
-                <% end %>
+    <div class="block w-full">
+      <table class="bg-transparent w-full">
+        <thead>
+          <tr class="text-center">
+            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+                          Cost name
+                        </th>
+          <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+                          Type
+                        </th>
+          <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+                          Amount
+                        </th>
+          <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
 
-                <div class="form-control block">
+                        </th>
+          <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+
+                        </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @costs.each do |cost| %>
+            <tr class="border-b-2 text-center py-0">
+              <th class="py-0 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center text-blueGray-700 ">
+                <%= cost.name %>
+              </th>
+              <td class="py-0 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs text-center whitespace-nowrap">
+                <%= cost.kind %>
+              </td>
+              <td class="py-0 border-t-0 px-6 align-center border-l-0 border-r-0 text-xs text-center whitespace-nowrap">
+                <%= cost.amount %>
+              </td>
+              <td class="py-0 border-t-0 px-3 align-center text-right border-l-0 border-r-0 text-xs whitespace-nowrap">
+                <div>
+                  <button type="submit" class="px-1 my-0 bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg show-modal">Update</button>
+                </div>
+              </td>
+              <td class="py-0 border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   <%= simple_form_for [@batch, cost], method: :delete do |f| %>
-                    <%= f.button :submit, "Delete", class: "w-full px-1 text-sm my-0 bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg" %>
-                <% end %>
+                    <%= f.button :submit, "Delete", class: "px-1 my-0 bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg" %>
+                  <% end %>
+              </td>
+            </tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%= render "costform" %>
 
-              <% end %>
-              </div>
+</section>
+
+
 
 </div>
 <!-- End of Full Cards Container -->

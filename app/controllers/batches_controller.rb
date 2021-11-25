@@ -16,11 +16,12 @@ class BatchesController < ApplicationController
         @students << student if booking.user_id == student.id
       end
     end
-    @total_student = @batch.bookings.count
 
+    # for the graph
+    @total_student = @batch.bookings.count
     @fixed_cost = @batch.costs.where(kind: "Fixed").sum(&:amount)
     @variable_cost = @batch.costs.where(kind: "Variable").sum(&:amount)
-    @total_cost = @fixed_cost - @variable_cost
+    @total_cost = @fixed_cost + @variable_cost
     @total_revenue = @batch.tuition_cost - @total_cost
     @revenue = @batch.tuition_cost
     @break_even = break_even_calc(@batch).round(2)
