@@ -63,6 +63,49 @@
   <section class="mt-10 grid-cols-1 px-8 grid gap-4 bg-white px-4 pb-8 space-y-1 overflow-hidden rounded-xl border-2 border-gray-50">
     <div class="grid grid-cols-1 gap- mt-10 sm:grid-cols-2 lg:grid-cols-1 px-8">
       <h6 class="text-xl font-medium text-center">Graph Container</h6>
+
+        <%= line_chart (
+        [
+          {
+            name: "total revenue",
+            data: {
+                    3.days.ago => 0,
+
+                    1.days.ago => 35
+                  },color: "#19CF00"
+          },
+          {
+            name: "total cost(variable + fixed)",
+            data: {
+                    3.days.ago => 0,
+
+                    1.days.ago => 29
+                  },color: "#EE3817"
+          },
+          {
+            name: "fixed cost",
+            data: {
+                    3.days.ago => 25,
+
+                    1.days.ago => 25
+                  },color: "#56504F"
+          },
+          {
+            name: "variable cost",
+            data: {
+                    3.days.ago => 0,
+
+                    1.days.ago => 10
+                  },color: "#F7ED0B"
+          }
+        ]
+        ), points: false, curve: false,
+            min: 0, max: 50,
+            xtitle: "Student count",
+            ytitle: "Rate",
+            loading: "Loading..."
+            %>
+
     </div>
   </section>
   <!-- End of Numbers Cards Container -->
