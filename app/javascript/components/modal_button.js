@@ -1,5 +1,5 @@
 const modalButtons = () => {
-  var modal = document.querySelector('.modal');
+  var modal = document.querySelectorAll('.modal');
 
   var showModal = document.querySelectorAll('.show-modal');
   var closeModal = document.querySelectorAll('.close-modal');
@@ -7,7 +7,20 @@ const modalButtons = () => {
   if (showModal){
     showModal.forEach(element => {
       element.addEventListener('click', function () {
-      modal.classList.toggle('hidden')
+        modal.forEach(modal_element => {
+          if(modal_element.dataset.cost_id){
+            if (modal_element.dataset.cost_id == this.dataset.cost_id) {
+              modal_element.classList.remove('hidden')
+              console.log("modal popup from cost")
+            }
+          }
+          else{
+            modal_element.classList.remove('hidden')
+            console.log("modal popup normal")
+          }
+        });
+
+      // modal.classList.remove('hidden')
       });
     });
   };
@@ -15,17 +28,18 @@ const modalButtons = () => {
   if(closeModal){
     closeModal.forEach(close => {
       close.addEventListener('click', function () {
-        modal.classList.toggle('hidden')
+        modal.forEach(modal_element => {
+          if (modal_element.dataset.cost_id) {
+            if (modal_element.dataset.cost_id == this.dataset.cost_id) {
+              modal_element.classList.add('hidden')
+            }
+          }
+          else {
+            modal_element.classList.add('hidden')
+          }
+        });
       });
     });
   }
-  if (modal){
-    const updateResultsList = (event) => {
-      event.preventDefault();
-      list.innerHTML = '';
-      const input = document.querySelector('#search-input');
-      fetchMovies(input.value);
-    }
-  };
 }
 export { modalButtons };

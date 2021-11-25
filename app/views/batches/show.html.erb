@@ -200,7 +200,9 @@
               </td>
               <td class="py-0 border-t-0 px-3 align-center text-right border-l-0 border-r-0 text-xs whitespace-nowrap">
                 <div>
-                  <button type="submit" class="px-1 my-0 bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg show-modal">Update</button>
+                  <button type="submit" class="px-4 py-3 font-bold my-0 bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg show-modal" data-cost_id="<%=cost.id%>">
+                    Update
+                  </button>
                 </div>
               </td>
               <td class="py-0 border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
@@ -215,11 +217,13 @@
     </div>
   </div>
 </div>
-<%= render "costform" %>
+
 
 </section>
 
-
+<% @costs.each do |cost| %>
+  <%= render "costform", cost:cost %>
+<% end %>
 
 </div>
 <!-- End of Full Cards Container -->
