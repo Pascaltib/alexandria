@@ -3,7 +3,7 @@ class BatchesController < ApplicationController
     @user = current_user
     @batches = @user.batches
     @batch = Batch.new
-    @hidden = true
+    @hidden = "hidden"
   end
 
   def show
@@ -35,7 +35,7 @@ class BatchesController < ApplicationController
     if @batch.save
       redirect_to batches_path
     else
-      @hidden = false
+      @hidden = ""
       render :index
     end
   end
