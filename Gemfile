@@ -29,8 +29,9 @@ gem 'faker'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'devise'
-
+# gem for the chart
 gem "chartkick"
+
 
 gem 'simple_form-tailwind'
 
