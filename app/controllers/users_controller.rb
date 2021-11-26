@@ -9,6 +9,22 @@ class UsersController < ApplicationController
           @students << student
         end
       end
+
+          # search form
+    # get the user(student) that belongs to the batch through bookings
+    if params[:query].present?
+
+      sql_query = "
+        user.first_name ILIKE :query \
+        OR user.last_name ILIKE :query \
+        OR user.email ILIKE :query \
+      "
+      # @student = Booking.where(sql_query, query: "%#{params[:query]}%")
+      @student = User.joins(:batch).where(sql_query, query: "%#{params[:query]}%")
+    else
+      @student = User.all
+    end
+
     end
 
     @all_students = User.where(admin: false)
