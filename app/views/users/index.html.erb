@@ -14,8 +14,8 @@
       <%# -----search box ------ %>
       <div>
 
-        <%= form_tag(batch_users_path, method: :get) do %>
-          <%= text_field_tag :query, params[:query], autocomplete: "off", placeholder: "Looking for Student...", class: ""  %>
+        <%= form_tag(batch_users_path, method: :get, class: "flex w-min") do %>
+          <%= text_field_tag :query, params[:query], autocomplete: "off", placeholder: "Search Students", class: "pl-3 my-3 border"  %>
           <%= submit_tag "Search", class: "w-20 text-sm bg-black font-medium text-center cursor-pointer py-2 px-4 hover:bg-gray-500 text-white my-3 rounded-lg" %>
         <% end %>
       </div>
