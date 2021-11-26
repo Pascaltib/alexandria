@@ -206,14 +206,14 @@
               </td>
               <td class="border-t-0 align-center border-l-0 border-r-0 text-center">
                 <div>
-                  <button type="submit" class="text-xs px-4 py-1 my-0 bg-gray-400 cursor-pointer hover:bg-gray-600 text-white rounded-lg show-modal text-center" data-cost_id="<%=cost.id%>">
+                  <button type="submit" class="text-sm px-4 py-1 my-0 bg-transparent cursor-pointer hover:underline text-black rounded-lg show-modal text-center" data-cost_id="<%=cost.id%>">
                     Update
                   </button>
                 </div>
               </td>
               <td class="border-t-0 align-center border-l-0 border-r-0 text-center">
                   <%= simple_form_for [@batch, cost], method: :delete do |f| %>
-                  <button type="submit" class="text-xs px-4 py-1 my-0 bg-red-400 cursor-pointer hover:bg-red-600 text-white rounded-lg text-center" data-cost_id="<%=cost.id%>">
+                  <button type="submit" class="text-sm px-4 py-1 my-0 bg-trasparent cursor-pointer hover:underline text-red-600 rounded-lg text-center" data-cost_id="<%=cost.id%>">
                     Delete
                   </button>
                   <% end %>
