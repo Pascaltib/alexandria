@@ -17,15 +17,15 @@ class BatchesController < ApplicationController
       end
     end
 
-    # for the graph
-    @total_student = @batch.bookings.count
-    @fixed_cost = @batch.costs.where(kind: "Fixed").sum(&:amount)
-    @variable_cost = @batch.costs.where(kind: "Variable").sum(&:amount)
-    @total_cost = @fixed_cost + @variable_cost
-    @total_revenue = @batch.tuition_cost - @total_cost
-    @revenue = @batch.tuition_cost
-    @break_even = break_even_calc(@batch).round(2)
     @current_net_income = net_income_calc(@batch).round(2)
+    @break_even = break_even_calc(@batch).round(2)
+
+    # for the graph
+    graph_quantity = (@break_even.round * 3) + 10
+    @net_income_data_arr = net_income_data(graph_quantity, @batch)
+    @variable_income_data_arr = variable_income_data(graph_quantity, @batch)
+    @total_cost_data_arr = total_cost_data(graph_quantity, @batch)
+    @variable_cost_data_arr = variable_cost_data(graph_quantity, @batch)
   end
 
   def create
@@ -47,6 +47,7 @@ class BatchesController < ApplicationController
     params.require(:batch).permit(:name, :tuition_cost)
   end
 
+  # For dashboard data infobox
   def break_even_calc(batch)
     total_fixed_cost = batch.costs.where(kind: "Fixed").sum(&:amount)
     total_variable_cost = batch.costs.where(kind: "Variable").sum(&:amount)
@@ -60,5 +61,51 @@ class BatchesController < ApplicationController
     total_variable_cost = batch.costs.where(kind: "Variable").sum(&:amount)
     variable_revenue = batch.tuition_cost
     return (quantity * variable_revenue) - (quantity * total_variable_cost) - total_fixed_cost
+  end
+
+  # For graph lines
+
+  def net_income_data(quantity, batch)
+    arr = []
+    count = 0
+    quantity.times do
+      val = (count * (batch.tuition_cost - batch.costs.where(kind: "Variable").sum(&:amount))) - batch.costs.where(kind: "Fixed").sum(&:amount)
+      arr << [count, val]
+      count += 1
+    end
+    arr
+  end
+
+  def variable_income_data(quantity, batch)
+    arr = []
+    count = 0
+    quantity.times do
+      val = count * batch.tuition_cost
+      arr << [count, val]
+      count += 1
+    end
+    arr
+  end
+
+  def total_cost_data(quantity, batch)
+    arr = []
+    count = 0
+    quantity.times do
+      val = (count * batch.costs.where(kind: "Variable").sum(&:amount)) + batch.costs.where(kind: "Fixed").sum(&:amount)
+      arr << [count, val]
+      count += 1
+    end
+    arr
+  end
+
+  def variable_cost_data(quantity, batch)
+    arr = []
+    count = 0
+    quantity.times do
+      val = count * batch.costs.where(kind: "Variable").sum(&:amount)
+      arr << [count, val]
+      count += 1
+    end
+    arr
   end
 end
