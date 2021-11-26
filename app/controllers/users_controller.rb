@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def index
     @batch = Batch.find(params[:batch_id])
     @booking = Booking.new
@@ -11,10 +12,24 @@ class UsersController < ApplicationController
       end
     end
 
+    # Do not delete used for adding new student to batch
     @all_students = User.where(admin: false)
-    # .map do |student|
-    #   "#{student.first_name} + #{student.last_name}"
-    # end
+
+    # search form
+    # get the user(student) that was added to the batch through bookings
+    # display the one that is searched for
+    # if there is no match then render to all the (user) that is added to the batch
+
+    if params[:query].present?
+      @student_search = []
+      @students.each do |individual|
+        if individual.first_name.downcase == params[:query].downcase || individual.last_name.downcase == params[:query].downcase
+          @student_search << individual
+        end
+      end
+      @students = @student_search
+      # @student = User.joins(:batch).where(sql_query, query: "%#{params[:query]}%")
+    end
   end
 
   # to edit students profile
