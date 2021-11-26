@@ -6,6 +6,7 @@ class BatchesController < ApplicationController
     @hidden = "hidden"
   end
 
+
   def show
     @batch = Batch.find(params[:id])
     @costs = @batch.costs

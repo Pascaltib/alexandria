@@ -10,7 +10,18 @@
     <div class="relative px-16 mx-auto max-w-7xl">
       <p class="font-medium tracking-wide text-blue-500 uppercase">Welcome to students page <%= @batch.name %></p>
       <h2 class="relative max-w-lg mt-5 mb-10 text-4xl font-semibold leading-tight lg:text-5xl">Meet all the faces<br>of your batch</h2>
-      <div class="grid w-full grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-4">
+
+      <%# -----search box ------ %>
+      <div>
+
+        <%= form_tag(batch_users_path, method: :get) do %>
+          <%= text_field_tag :query, params[:query], autocomplete: "off", placeholder: "Looking for Student...", class: ""  %>
+          <%= submit_tag "Search", class: "w-20 text-sm bg-black font-medium text-center cursor-pointer py-2 px-4 hover:bg-gray-500 text-white my-3 rounded-lg" %>
+        <% end %>
+      </div>
+      <%# --------end------- %>
+
+      <div class="grid w-full grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-4 mt-5">
         <% @students.each do |student| %>
           <div class="flex flex-col items-center justify-center col-span-1">
             <div class="relative p-5">
