@@ -31,8 +31,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 # gem for the chart
 gem "chartkick"
-# gem for search
-gem 'pg_search', '~> 2.3.0'
+
 
 gem 'simple_form-tailwind'
 
