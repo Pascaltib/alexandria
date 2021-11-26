@@ -1,1 +1,62 @@
-// Specific CSS for your home-page
+.linear-wipe {
+  font-size: 100px;
+  text-align: center;
+
+  background: linear-gradient(to right, rgb(0, 0, 0) 20%, rgb(0, 38, 255) 40%, rgb(0, 110, 255) 60%, rgb(0, 0, 0) 80%);
+  background-size: 200% auto;
+
+  color: #000;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: shine 5s linear infinite;
+  @keyframes shine {
+    to {
+      background-position: 200% center;
+    }
+  }
+}
+
+.linear-wipe-2{
+  font-size: 100px;
+  text-align: center;
+
+  background: linear-gradient(to right, rgb(0, 0, 0) 20%, rgb(255, 0, 30) 40%, rgb(255, 0, 60) 60%, rgb(0, 0, 0) 80%);
+  background-size: 200% auto;
+
+  color: #000;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: shine 5s linear infinite;
+  @keyframes shine {
+    to {
+      background-position: 200% center;
+    }
+  }
+}
+
+.linear-wipe-3{
+  font-size: 100px;
+  text-align: center;
+
+  background: linear-gradient(to right, rgb(0, 0, 0) 20%, #FF0 40%, rgb(255, 157, 0) 60%, rgb(0, 0, 0) 80%);
+  background-size: 200% auto;
+
+  color: #000;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: shine 5s linear infinite;
+  @keyframes shine {
+    to {
+      background-position: 200% center;
+    }
+  }
+}
