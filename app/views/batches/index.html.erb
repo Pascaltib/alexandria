@@ -12,10 +12,10 @@
       </button>
     </div>
 
-    <div class="grid grid-cols-1 gap-4 mt-10 sm:grid-cols-2 lg:grid-cols-3 px-8">
+    <div class="grid grid-cols-1 gap-4 mt-10 sm:grid-cols-2 lg:grid-cols-2 px-8">
       <% @batches.each do |batch| %>
         <%= link_to batch_path(batch) do %>
-          <div class="relative flex flex-col items-center justify-between col-span-3 px-4 py-4 space-y-2 overflow-hidden bg-gray-100 sm:rounded-xl">
+          <div class="relative flex flex-col items-center justify-between col-span-3 px-4 py-4 space-y-2 overflow-hidden hover:bg-green-50 sm:rounded-xl bg-white shadow-xl border">
             <div class="py-3 px-5 text-white bg-black rounded-full">
               <%= batch.name.chars.first %></h4>
             </div>

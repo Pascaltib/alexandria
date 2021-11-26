@@ -1,15 +1,15 @@
 <!-- Header // Do Not Touch -->
 
 <section class="py-10">
-  <div class="container max-w-6xl mx-auto z-0">
-    <h2 class="text-4xl font-bold tracking-tight text-center"><%= @batch.name %> Dashboard</h2>
-    <p class="mt-2 text-lg text-center text-gray-600">Review your Students, Costs, and Break Even Point.</p>
-    <div class="button-center text-center">
-    <%= link_to batch_users_path(@batch) do %>
-      <button class="w-1/5 text-sm bg-black font-medium text-center cursor-pointer py-2 px-4 hover:bg-gray-500 text-white my-3 rounded-lg"><%= @batch.name %> Students</button>
-    <% end %>
+  <div class="container max-w-8xl mx-auto z-0">
     <%= link_to batches_path do %>
-      <button class="w-1/5 text-sm bg-gray-300 font-medium text-center cursor-pointer py-2 px-4 hover:bg-gray-400 text-black hover:text-white my-3 rounded-lg">Go back</button>
+      <span class="w-20 text-sm bg-transparent font-medium text-start cursor-pointer text-black hover:text-gray-300 rounded-lg"><i class="fas fa-angle-left"></i> Go back</span>
+    <% end %>
+    <h2 class="text-4xl font-bold tracking-tight text-start mt-2"><%= @batch.name %> Dashboard</h2>
+    <p class="mt-2 text-lg text-start text-gray-600">Review your Students, Costs, and Break Even Point.</p>
+    <div class="flex gap-2 button-center text-start">
+    <%= link_to batch_users_path(@batch) do %>
+      <button class="w-auto text-sm bg-black font-medium text-start cursor-pointer py-2 px-4 hover:bg-gray-500 text-white my-3 rounded-lg"><%= @batch.name %> Students</button>
     <% end %>
     </div>
   </div>
@@ -23,14 +23,14 @@
 <div class="container grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto gap-8">
 
   <!-- Numbers Cards Container // Do Not Touch -->
-  <section class="grid-cols-1 grid bg-white overflow-hidden rounded-2xl shadow-xl">
+  <section class="grid-cols-1 grid bg-white overflow-hidden rounded-2xl shadow-xl border">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 
       <div class="w-full flex flex-col items-start pl-6 pt-4 pb-2 justify-between col-span-4 bg-white overflow-hidden border-b border-gray-100">
         <h6 class="text-xl font-medium text-center">Batch Data</h6>
         </div>
         <div class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden border-b border-gray-200 hover:bg-gray-50">
-          <h4 class="text-sm text-gray-700">Tutition Cost</h4>
+          <h4 class="text-sm text-left text-gray-700">Tutition Cost</h4>
           <div class="py-1 px-5 text-white bg-green-300 rounded-full">
             <h4><%= @batch.tuition_cost %>€</h4>
           </div>
@@ -39,7 +39,7 @@
 
     <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
       <div class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden border-b border-gray-200 hover:bg-gray-50">
-        <h4 class="text-sm text-center text-gray-700">Amount of students to break even</h4>
+        <h4 class="text-sm text-left text-gray-700">Amount of students to break even</h4>
         <div class="py-1 px-5 text-white bg-gray-600 rounded-full">
           <h4><%= @break_even %></h4>
         </div>
@@ -48,7 +48,7 @@
 
     <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
       <div class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden border-b border-gray-200 hover:bg-gray-50">
-        <h4 class="text-sm text-center text-gray-700">Total of students in the Batch</h4>
+        <h4 class="text-sm text-left text-gray-700">Total of students in the Batch</h4>
         <div class="py-1 px-5 text-white bg-gray-600 rounded-full">
           <h4><%= @total_student %></h4>
         </div>
@@ -57,7 +57,7 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
       <div class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden hover:bg-gray-50">
-        <h4 class="text-sm text-gray-700">Net income</h4>
+        <h4 class="text-sm text-left text-gray-700">Net income</h4>
         <% if @current_net_income > 0 %>
           <div class="py-1 px-5 text-white bg-green-300 rounded-full">
             <h4><%= @current_net_income %></h4>
@@ -77,7 +77,7 @@
   <!-- End of Numbers Cards Container -->
 
   <!-- Graph Container // Do Not Touch -->
-  <section class="grid-cols-1 grid bg-white space-y-1 overflow-hidden rounded-xl shadow-xl">
+  <section class="grid-cols-1 grid bg-white space-y-1 overflow-hidden rounded-xl shadow-xl border">
     <div class="">
         <% @trial = 0 %>
         <%= line_chart (
@@ -123,105 +123,111 @@
   <!-- End of Numbers Cards Container -->
 
 
-  <!-- Add a New Cost Card Container // Do Not Touch -->
-  <section class="grid grid-cols-1 overflow-hidden rounded-xl bg-white shadow-xl">
+<section class="grid-cols-1 grid bg-white overflow-hidden rounded-2xl shadow-xl border">
+  <div class="grid grid-cols-1">
+    <div class="w-full flex flex-col items-start pl-6 pt-4 pb-2 mb-4 justify-between col-span-4 bg-white overflow-hidden border-b border-gray-100">
+      <h6 class="text-xl font-medium text-center">Add a new Cost</h6>
+    </div>
 
-    <!-- Add a New Cost -->
-    <section class="w-full content-center">
-      <div class="px-8">
-        <div class="flex flex-col items-center md:flex-row justify-center">
-          <div class="w-full">
-            <div class="h-auto overflow-hidden rounded-lg">
-            <h6 class="text-xl font-medium text-center">Add a new Cost</h6>
+  <section class="w-full content-center">
+        <div class="px-8">
+          <div class="flex flex-col items-center">
+            <div class="w-full">
 
+            <%= simple_form_for [@batch, @cost], class: "" do |f| %>
+            <%= f.input :name,
+                        autofocus: true,
+                        label: false,
+                        placeholder: "Name",
+                        input_html: { autocomplete: "off" }, class: "block w-full rounded-lg focus:ring focus:ring-black focus:outline-none" %>
 
-          <%= simple_form_for [@batch, @cost], class: "mt-5" do |f| %>
-          <%= f.input :name,
-                      autofocus: true,
-                      label: false,
-                      placeholder: "Name",
-                      input_html: { autocomplete: "off" }, class: "block w-full px-4 my-0 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-black focus:outline-none" %>
+            <%= f.input :amount,
+                        autofocus: true,
+                        label: false,
+                        placeholder: "Amount",
+                        input_html: { autocomplete: "off" }, class: "block w-full rounded-lg focus:ring focus:ring-black focus:outline-none" %>
 
-          <%= f.input :amount,
-                      autofocus: true,
-                      label: false,
-                      placeholder: "Amount",
-                      input_html: { autocomplete: "off" }, class: "block w-full px-4 my-0 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-black focus:outline-none" %>
+            <%= f.input :kind, collection: ["Fixed", "Variable"], prompt: "Type",
+                        autofocus: true,
+                        label: false,
+                        input_html: { autocomplete: "off" }, class: "block w-full rounded-lg focus:ring focus:ring-black focus:outline-none" %>
 
-          <%= f.input :kind, collection: ["Fixed", "Variable"], prompt: "Type",
-                      autofocus: true,
-                      label: false,
-                      input_html: { autocomplete: "off" }, class: "block w-full px-4 my-0 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-black focus:outline-none" %>
-
-                  <%= f.button :submit, "Add new cost", class: "w-full px-1 text-sm my-0 bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg" %>
+                    <%= f.button :submit, "Add", class: "w-full text-sm bg-black cursor-pointer hover:bg-gray-600 text-white mt-0 rounded-lg" %>
                 </div>
-              </div>
-            <% end %>
-            </div>
+              <% end %>
           </div>
         </div>
       </div>
-    </section>
-    <!-- End of Add a new cost -->
+    </div>
   </section>
-  <!-- End of Add a New Cost Card Container -->
 
-<div class="container max-w-8xl mx-auto my-8 z-10">
-<div class="rounded-xl bg-white shadow-xl py-8">
+  </div>
+</section>
+
+
+
+
+
+<div class="container max-w-8xl mx-auto my-8 ">
+<div class="rounded-xl bg-white shadow-xl border">
 <!-- Costs Table -->
 <section>
 <div>
-  <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 z-2">
-    <div class="rounded-t mb-0 px-4 py-3 border-0">
-      <div class="flex flex-wrap items-center">
-        <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+  <div class="relative flex flex-col bg-white w-full rounded-xl">
+    <div class="">
+      <div class="">
+        <div class="rounded-xl w-full flex flex-col items-start pl-6 pt-4 mb-4 justify-between col-span-4 bg-white overflow-hidden">
           <h3 class="text-xl font-medium text-center">My Costs</h3>
         </div>
       </div>
     </div>
 
-    <div class="block w-full">
-      <table class="bg-transparent w-full">
+    <div class="w-full">
+      <table class="bg-transparent w-full table-fixed">
         <thead>
-          <tr class="text-center">
-            <th class="px-0 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+          <tr class="text-xs bg-gray-50">
+          <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-left pl-6">
                           Cost name
                         </th>
-          <th class="px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+          <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-left">
                           Type
                         </th>
-          <th class="px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+          <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-left">
                           Amount
                         </th>
-          <th class="px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+          <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-center">
+                          Update
                         </th>
-          <th class="px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+          <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-center">
+                          Delete
                         </th>
           </tr>
         </thead>
 
         <tbody>
           <% @costs.each do |cost| %>
-            <tr class="border-b-2 text-center py-0">
-              <th class="py-0 border-t-0 px-6 align-middle border-l-0 border-r-0 text-md text-center whitespace-nowrap">
+            <tr class="border-b text-left hover:bg-gray-50 h-12">
+              <th class="border-t-0 align-middle border-l-0 border-r-0 text-left pl-6 font-medium">
                 <%= cost.name %>
               </th>
-              <td class="py-0 border-t-0 px-6 align-middle border-l-0 border-r-0 text-md text-center whitespace-nowrap">
+              <td class="border-t-0 align-middle border-l-0 border-r-0 text-left">
                 <%= cost.kind %>
               </td>
-              <td class="py-0 border-t-0 px-6 align-center border-l-0 border-r-0 text-md text-center whitespace-nowrap">
+              <td class="border-t-0 align-center border-l-0 border-r-0 text-left">
                 <%= cost.amount %>
               </td>
-              <td class="py-0 border-t-0 px-3 align-center text-right border-l-0 border-r-0 text-xs whitespace-nowrap">
+              <td class="border-t-0 align-center border-l-0 border-r-0 text-center">
                 <div>
-                  <button type="submit" class="px-4 py-3 text-md font-bold my-0 bg-blue-400 cursor-pointer hover:bg-blue-600 text-white rounded-lg show-modal" data-cost_id="<%=cost.id%>">
+                  <button type="submit" class="text-xs px-4 py-1 my-0 bg-gray-400 cursor-pointer hover:bg-gray-600 text-white rounded-lg show-modal text-center" data-cost_id="<%=cost.id%>">
                     Update
                   </button>
                 </div>
               </td>
-              <td class="py-0 border-t-0 px-2 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+              <td class="border-t-0 align-center border-l-0 border-r-0 text-center">
                   <%= simple_form_for [@batch, cost], method: :delete do |f| %>
-                    <%= f.button :submit, "Delete", class: "px-1 my-0 bg-red-400 cursor-pointer text-xs font-small hover:bg-red-600 text-white rounded-lg" %>
+                  <button type="submit" class="text-xs px-4 py-1 my-0 bg-red-400 cursor-pointer hover:bg-red-600 text-white rounded-lg text-center" data-cost_id="<%=cost.id%>">
+                    Delete
+                  </button>
                   <% end %>
               </td>
             </tr>
@@ -236,13 +242,11 @@
 </section>
 </div>
 
-<% @costs.each do |cost| %>
-  <%= render "costform", cost:cost %>
-<% end %>
+    <% @costs.each do |cost| %>
+      <%= render "costform", cost:cost %>
+    <% end %>
 
-</div>
-<!-- End of Full Cards Container -->
-
-
+  </div>
+  <!-- End of Full Cards Container -->
 </div>
 <!-- End of The Biggest Container -->
