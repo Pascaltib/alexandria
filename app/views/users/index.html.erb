@@ -38,7 +38,9 @@
         <%= f.input :user_id, label: false, collection: @all_students, label_method: lambda{ |individual| "#{individual.first_name} #{individual.last_name}" }, :value_method => :id, input_html: { style: 'width:200px;' }, prompt: "Select Student"  %>
         <%# <%= f.association :user, input_html: { class: 'select2' }  %>
         <%= f.button :submit, "Add student", class: "w-3/12"%>
-        <p class="w-full mt-4 text-sm text-center text-gray-800 hover:text-gray-500 hover:underline"> <%= link_to "Go Back", :back %> </p>
+          <%= link_to batch_path(@batch) do %>
+          <p class="w-full mt-4 text-sm text-center text-gray-800 hover:text-gray-500 hover:underline">Go back</p>
+          <% end %>
         <% end %>
       </div>
     </div>
