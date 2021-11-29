@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   def update
     @batch = Batch.find(params[:batch_id])
-    @user = User.find(params[:id])
+    @user = current_user
     if @user.update(student_params)
       redirect_to batch_users_path(@batch)
     else
@@ -46,6 +46,6 @@ class UsersController < ApplicationController
   private
 
   def student_params
-    params.require(:user).permit(:first_name, :last_name, :email)
+    params.require(:user).permit(:first_name, :last_name, :email, :photo)
   end
 end

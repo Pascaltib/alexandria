@@ -6,4 +6,6 @@ class User < ApplicationRecord
   has_many :batches
   has_many :bookings
 
+
+  has_one_attached :photo
 end
