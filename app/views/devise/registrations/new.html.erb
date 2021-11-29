@@ -10,6 +10,18 @@
             <%= f.error_notification %>
 
             <div class="form-inputs">
+              <%= f.input :first_name,
+                  required: true,
+                  autofocus: true,
+                  label: false,
+                  placeholder: "First Name",
+                  input_html: { autocomplete: "first_name" }, class: "block w-full px-4 py-3 mb-4 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-blue-500 focus:outline-none"%>
+              <%= f.input :last_name,
+                  required: true,
+                  autofocus: true,
+                  label: false,
+                  placeholder: "Last Name",
+                  input_html: { autocomplete: "last_name" }, class: "block w-full px-4 py-3 mb-4 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-blue-500 focus:outline-none"%>
               <%= f.input :email,
                           required: true,
                           autofocus: true,
@@ -26,6 +38,7 @@
                           label: false,
                           placeholder: "Confirm Password",
                           input_html: { autocomplete: "off" }, class: "block w-full px-4 py-3 mb-4 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-blue-500 focus:outline-none" %>
+              <%= f.input :admin, as: :radio_buttons, collection: [['I am an administrator', true], ['I am a student', false]], checked: ['I am an administrator', true]  %>
             </div>
 
             <div class="form-actions block">

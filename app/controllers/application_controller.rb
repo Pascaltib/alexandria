@@ -1,9 +1,8 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
-  # app/controllers/application_controller.rb
-
-  def default_url_options
-    { host: ENV["alexandria725.herokuapp.com"] || "localhost:3000" }
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :admin])
   end
 end

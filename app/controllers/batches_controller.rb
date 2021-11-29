@@ -4,8 +4,9 @@ class BatchesController < ApplicationController
     @batches = @user.batches
     @batch = Batch.new
     @hidden = "hidden"
-  end
 
+    @batches = Batch.all if current_user.admin == false
+  end
 
   def show
     @batch = Batch.find(params[:id])

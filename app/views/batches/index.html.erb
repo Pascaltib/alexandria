@@ -1,35 +1,47 @@
-<section class="py-20 bg-white">
-  <div class="container max-w-6xl mx-auto">
-    <h2 class="text-4xl font-bold tracking-tight text-center">
-      Welcome back <%= @user.first_name %>!
-    </h2>
-    <p class="mt-2 text-lg text-center text-gray-600">
-      Create and Access your Cohort.
-    </p>
-    <div class="flex justify-center">
-      <button class=" my-2 bg-gray-900 hover:bg-gray-500 text-white font-bold text-sm py-2 px-4 rounded show-modal">
-        Add a new cohort
-      </button>
-    </div>
+<% if @user.admin == true %>
+  <section class="py-20 bg-white">
+    <div class="container max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold tracking-tight text-center">
+        Welcome back <%= @user.first_name %>!
+      </h2>
+      <p class="mt-2 text-lg text-center text-gray-600">
+        Create and Access your Cohorts.
+      </p>
+      <div class="flex justify-center">
+        <button class=" my-2 bg-gray-900 hover:bg-gray-500 text-white font-bold text-sm py-2 px-4 rounded show-modal">
+          Add a new cohort
+        </button>
+      </div>
 
-    <div class="grid grid-cols-1 gap-4 mt-10 sm:grid-cols-2 lg:grid-cols-2 px-8">
-      <% @batches.each do |batch| %>
-        <%= link_to batch_path(batch) do %>
-          <div class="relative flex flex-col items-center justify-between col-span-3 px-4 py-4 space-y-2 overflow-hidden hover:bg-green-50 sm:rounded-xl bg-white shadow-xl border">
-            <div class="py-3 px-5 text-white bg-black rounded-full">
-              <%= batch.name.chars.first %></h4>
+      <div class="grid grid-cols-1 gap-4 mt-10 sm:grid-cols-2 lg:grid-cols-2 px-8">
+        <% @batches.each do |batch| %>
+          <%= link_to batch_path(batch) do %>
+            <div class="relative flex flex-col items-center justify-between col-span-3 px-4 py-4 space-y-2 overflow-hidden hover:bg-green-50 sm:rounded-xl bg-white shadow-xl border">
+              <div class="py-3 px-5 text-white bg-black rounded-full">
+                <%= batch.name.chars.first %></h4>
+              </div>
+              <h4 class="text-xl font-medium text-gray-700">
+                <%= batch.name %>
+              </h4>
+              <h4 class="text-xl font-medium text-gray-700">
+                €<%= batch.tuition_cost %>
+              </h4>
             </div>
-            <h4 class="text-xl font-medium text-gray-700">
-              <%= batch.name %>
-            </h4>
-            <h4 class="text-xl font-medium text-gray-700">
-              €<%= batch.tuition_cost %>
-            </h4>
-          </div>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<%= render "form" , hidden:@hidden%>
+  <%= render "form" , hidden:@hidden%>
+<% elsif @user.admin == false %>
+  <section class="py-20 bg-white">
+    <div class="container max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold tracking-tight text-center">
+        Welcome back <%= @user.first_name %>!
+      </h2>
+      <p class="mt-2 text-lg text-center text-gray-600">
+        Upload your profile picture and select your cohort
+      </p>
+  </section>
+<% end  %>

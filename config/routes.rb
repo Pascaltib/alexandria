@@ -3,9 +3,14 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :batches, except: %i[destroy edit update] do
-    resources :bookings, only: [:create, :destroy]
     resources :costs, only: %i[create show update destroy]
     resources :users, only: %i[index update destroy edit]
+  end
+  resources :bookings, only: [:create] do
+    member do
+      patch :accept
+      patch :pending
+    end
   end
 
   get '/404', to: 'errors#not_found'
