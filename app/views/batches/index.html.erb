@@ -13,20 +13,16 @@
         </button>
       </div>
 
-      <div class="grid grid-cols-1 gap-4 mt-10 sm:grid-cols-2 lg:grid-cols-2 px-8">
+      <div class="grid grid-cols-1 gap-4 mt-10 sm:grid-cols-2 lg:grid-cols-2 px-8 w-4/5 mx-auto">
         <% @batches.each do |batch| %>
           <%= link_to batch_path(batch) do %>
             <div class="relative flex flex-col items-center justify-between col-span-3 px-4 py-4 space-y-2 overflow-hidden hover:bg-green-50 sm:rounded-xl bg-white shadow-xl border">
               <div class="py-3 px-5 text-white bg-black rounded-full">
                 <%= batch.name.chars.first %></h4>
               </div>
-              <h4 class="text-xl font-medium text-gray-700">
-                <%= batch.name %>
-              </h4>
-              <h4 class="text-xl font-medium text-gray-700">
-                Tuition: €<%= number_with_delimiter(batch.tuition_cost, :delimiter => ",") %>
-              </h4>
-            </div>
+                <h6 class="font-medium text-gray-800">Cohort: </h6><%= batch.name %>
+                <h6 class="font-medium text-gray-800">Tuition: </h6>€<%= number_with_delimiter(batch.tuition_cost, :delimiter => ",") %>
+              </div>
           <% end %>
         <% end %>
       </div>
