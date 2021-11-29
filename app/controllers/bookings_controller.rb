@@ -42,6 +42,13 @@ class BookingsController < ApplicationController
     redirect_to batch_users_path(Batch.find(booking.batch_id))
   end
 
+  def pending
+    booking = Booking.find(params[:id])
+    booking.status = "Pending"
+    booking.save!
+    redirect_to batch_users_path(Batch.find(booking.batch_id))
+  end
+
   # to remove student
   def destroy
     @batch = Batch.find(params[:batch_id])
