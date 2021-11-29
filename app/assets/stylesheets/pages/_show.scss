@@ -1,0 +1,28 @@
+body{
+  background-color: #F9FAFB;
+}
+
+.add_cohort_button{
+  background-color: #5278DB;
+  opacity: 0.8;
+  transition: 0.2s;
+}
+  
+.add_cohort_button:hover{
+  background-color: #52DBAA;
+  opacity: 1;
+}
+
+.cohort-card{
+  transition: 0.2s;
+}
+
+.cohort-card:hover{
+  background-color: #f6fffc;
+  border: 0.1px solid #dee9ff;
+  transition: 0.2s;
+}
+
+#chart-1 canvas {
+  width:100% !important;
+}
