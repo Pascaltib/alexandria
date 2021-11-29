@@ -34,6 +34,13 @@
       <div class="flex justify-left lg:w-auto md:w-40 lg:mx-auto mt-3 pt-1 lg:pl-3 my-3 md:pl-0 border-gray-50">
         <details>
             <summary>Add a Student</summary>
+            <% if @bookings.length < 1 %>
+              <div class="flex">
+                <div>
+                  No students have applied
+                </div>
+              </div>
+            <% end %>
             <% @bookings.each do |booking| %>
               <div class="flex">
                 <div>
