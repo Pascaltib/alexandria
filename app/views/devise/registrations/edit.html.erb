@@ -34,7 +34,7 @@
                           label: false,
                           placeholder: "Confirm Password",
                           input_html: { autocomplete: "off" }, class: "block w-full px-4 py-3 mb-4 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-blue-500 focus:outline-none" %>
-                <%= f.input :photo, as: :file %>
+                <%= f.input :photo, as: :file, required: true %>
               </div>
 
               <div class="form-actions block">

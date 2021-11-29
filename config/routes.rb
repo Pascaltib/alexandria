@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users, :path_prefix => 'my'
+  devise_for :users
   root to: 'pages#home'
 
   resources :batches, except: %i[destroy edit update] do
     resources :costs, only: %i[create show update destroy]
-    resources :users, only: %i[index update destroy edit]
+    resources :users, only: %i[index destroy]
   end
   resources :bookings, only: [:create] do
     member do

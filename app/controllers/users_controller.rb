@@ -21,20 +21,16 @@ class UsersController < ApplicationController
   end
 
   # to edit students profile
-  def edit
-    @batch = Batch.find(params[:batch_id])
-    @user = User.find(params[:id])
-  end
 
-  def update
-    @batch = Batch.find(params[:batch_id])
-    @user = current_user
-    if @user.update(student_params)
-      redirect_to batch_users_path(@batch)
-    else
-      render 'edit'
-    end
-  end
+  # def update
+  #   @batch = Batch.find(params[:batch_id])
+  #   @user = current_user
+  #   if @user.update(student_params)
+  #     redirect_to batch_users_path(@batch)
+  #   else
+  #     render 'edit'
+  #   end
+  # end
 
   def destroy
     @user = User.find(params[:id])
@@ -43,9 +39,9 @@ class UsersController < ApplicationController
     redirect_to batch_users_path
   end
 
-  private
+  # private
 
-  def student_params
-    params.require(:user).permit(:first_name, :last_name, :email, :photo)
-  end
+  # def student_params
+  #   params.require(:user).permit(:first_name, :last_name, :email, :photo)
+  # end
 end

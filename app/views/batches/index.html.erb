@@ -46,10 +46,13 @@
       </p>
 
       <%#-----------image upload --------- %>
-      <%= simple_form_for (@user), url: edit_user_registration_path, method: :get do |f| %>
+      <%= link_to edit_user_registration_path do |f| %>
 
-        <%= f.button :submit, "Upload profile picture (required!)", class: "w-full text-center"%>
+        <button class="w-full text-center">
+        Apply!!!!!!
+        </button>
       <% end %>
+
       <% if  @user.photo.key %>
         <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill, style: "margin:0; width: 100%; border-top-left-radius: 8px; border-top-right-radius: 8px;"%>
       <% end %>
