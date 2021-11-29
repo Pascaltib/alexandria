@@ -27,7 +27,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 
       <div class="w-full flex flex-col items-start pl-6 pt-4 pb-2 justify-between col-span-4 bg-white overflow-hidden border-b border-gray-100">
-        <h6 class="text-xl font-medium text-center">Batch Data</h6>
+        <h6 class="text-xl font-medium text-center">Cohort Data</h6>
         </div>
         <div class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden border-b border-gray-200 hover:bg-gray-50">
           <h4 class="text-sm text-left text-gray-700">Tutition Cost</h4>
@@ -48,7 +48,7 @@
 
     <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
       <div class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden border-b border-gray-200 hover:bg-gray-50">
-        <h4 class="text-sm text-center text-gray-700">Number of students in the Batch</h4>
+        <h4 class="text-sm text-center text-gray-700">Number of students in the Cohort</h4>
         <div class="py-1 px-5 text-white bg-gray-600 rounded-full">
           <h4><%= @students.count %></h4>
         </div>
@@ -77,8 +77,11 @@
   <!-- End of Numbers Cards Container -->
 
   <!-- Graph Container // Do Not Touch -->
-  <section class="grid-cols-1 grid bg-white space-y-1 overflow-hidden rounded-xl shadow-xl border">
-    <div class="">
+  <section class=" bg-white space-y-1 overflow-hidden rounded-xl shadow-xl border inline-flex">
+    <div class="self-center pl-8 pr-4">
+      <span >€ </span>
+    </div>
+    <div class="self-center">
         <% @trial = 0 %>
         <%= line_chart (
         [
@@ -101,7 +104,6 @@
         ]
         ), points: false, curve: false,
             xtitle: "Student count",
-            ytitle: "€",
             loading: "Loading..."
             %>
 

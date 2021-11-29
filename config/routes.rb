@@ -12,4 +12,8 @@ Rails.application.routes.draw do
       patch :pending
     end
   end
+
+  get '/404', to: 'errors#not_found'
+  get '/500', to: 'errors#internal_server'
+  get '/422', to: 'errors#unprocessable'
 end
