@@ -7,4 +7,8 @@ Rails.application.routes.draw do
     resources :costs, only: %i[create show update destroy]
     resources :users, only: %i[index update destroy edit]
   end
+
+  get '/404', to: 'errors#not_found'
+  get '/500', to: 'errors#internal_server'
+  get '/422', to: 'errors#unprocessable'
 end
