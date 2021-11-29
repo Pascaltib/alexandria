@@ -75,9 +75,14 @@
               <%#= link_to edit_batch_user_path(@batch, student) do%>
                 <%# <p class="text-sm px-4 py-1 my-0 mt-2 bg-green-100 text-black cursor-pointer hover:bg-green-300 hover:text-white rounded-lg show-modal text-center"> Edit </p> %>
               <%# end %>
-              <%# <div class="text-sm px-4 py-1 my-0 bg-red-400 cursor-pointer hover:bg-red-600 text-white rounded-lg show-modal text-center"> %>
-              <%#= link_to "Remove student", batch_booking_path(@batch,student), method: :delete, data: {confirm: "Are you sure?"} %>
-              <%# </div> %>
+              <div class="text-sm px-4 py-1 my-0 bg-red-400 cursor-pointer hover:bg-red-600 text-white rounded-lg show-modal text-center">
+                <%#= link_to "Remove student", batch_booking_path(@batch,student), method: :delete, data: {confirm: "Are you sure?"} %>
+                <%= form_tag pending_booking_path(Booking.where(user: student)[0]), method: :patch, class: "ml-2" do %>
+                  <%= button_tag(type: "submit", class: "btn btn-primary submit-search") do%>
+                    Remove student
+                  <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
         <% end %>
