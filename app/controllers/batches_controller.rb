@@ -49,7 +49,7 @@ class BatchesController < ApplicationController
   private
 
   def batch_params
-    params.require(:batch).permit(:name, :tuition_cost)
+    params.require(:batch).permit(:name, :tuition_cost, :photo)
   end
 
   # For dashboard data infobox
