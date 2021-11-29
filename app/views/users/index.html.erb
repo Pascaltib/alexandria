@@ -68,8 +68,6 @@
             </div>
             <% if student.photo.key %>
               <%= cl_image_tag student.photo.key, crop: :fill, class: "relative z-20 w-full rounded-full"%>
-            <% elsif student.image_url %>
-                <img class="relative z-20 w-full rounded-full" src="<%= student.image_url %>">
             <% end %>
           </div>
           <div class="mt-3 space-y-2 text-left">
