@@ -32,6 +32,8 @@ gem 'devise'
 # gem for the chart
 gem "chartkick"
 
+gem 'dotenv-rails', groups: [:development, :test]
+
 
 gem 'simple_form-tailwind'
 
