@@ -24,7 +24,7 @@
                 <%= batch.name %>
               </h4>
               <h4 class="text-xl font-medium text-gray-700">
-                €<%= batch.tuition_cost %>
+                Tuition: €<%= number_with_delimiter(batch.tuition_cost, :delimiter => ",") %>
               </h4>
             </div>
           <% end %>
