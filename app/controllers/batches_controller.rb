@@ -12,6 +12,8 @@ class BatchesController < ApplicationController
   end
 
   def show
+    redirect_to batches_path if current_user.admin == false
+
     @batch = Batch.find(params[:id])
     @costs = @batch.costs
     @cost = Cost.new

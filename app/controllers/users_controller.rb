@@ -1,24 +1,12 @@
 class UsersController < ApplicationController
-
   def index
+    redirect_to batches_path if current_user.admin == false
+
     @batch = Batch.find(params[:batch_id])
-    @booking = Booking.new
-    @students = []
-    User.where(admin: false).each do |student|
-      @batch.bookings.each do |booking|
-        if booking.user_id == student.id
-          @students << student
-        end
-      end
+    @bookings = @batch.bookings.where(status: "Pending")
+    @students = @batch.bookings.where(status: "Accepted").map do |booking|
+      User.find(booking.user_id)
     end
-
-    # Do not delete used for adding new student to batch
-    @all_students = User.where(admin: false)
-
-    # search form
-    # get the user(student) that was added to the batch through bookings
-    # display the one that is searched for
-    # if there is no match then render to all the (user) that is added to the batch
 
     if params[:query].present?
       @student_search = []
