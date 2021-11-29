@@ -48,6 +48,12 @@
                                   label: false,
                                   placeholder: "Tuition Cost",
                                   input_html: { autocomplete: 'off' }, class: "block w-full px-4 my-0 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-black focus:outline-none" %>
+                      <%= f.input :start_date, as: :string, autofocus: true,
+                                  label: false,
+                                  placeholder: "Start Date", input_html: {id: "range_start"} %>
+                      <%= f.input :end_date, as: :string, autofocus: true,
+                                  label: false,
+                                  placeholder: "End Date", input_html: {id: "range_end"} %>
                       <div class="">
                         <%= f.button :submit, "Add", class: "w-full px-1 text-sm my-0 bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg" %>
                       </div>
