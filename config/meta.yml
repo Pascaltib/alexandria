@@ -1,0 +1,5 @@
+meta_product_name: "Alexandria"
+meta_title: "Alexandria - Find your Break Even Point"
+meta_description: "Friendly break even point calculator for your staff"
+meta_image: "cover.png" # should exist in `app/assets/images/`
+twitter_account: "@save_alexandria"   # required for Twitter Cards
