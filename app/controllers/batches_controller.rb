@@ -5,7 +5,10 @@ class BatchesController < ApplicationController
     @batch = Batch.new
     @hidden = "hidden"
 
-    @batches = Batch.all if current_user.admin == false
+    if current_user.admin == false
+      @batches = Batch.all
+      @booking = Booking.new
+    end
   end
 
   def show
