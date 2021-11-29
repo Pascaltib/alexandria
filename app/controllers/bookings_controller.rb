@@ -35,6 +35,13 @@ class BookingsController < ApplicationController
     # end
   end
 
+  def accept
+    booking = Booking.find(params[:id])
+    booking.status = "Accepted"
+    booking.save!
+    redirect_to batch_users_path(Batch.find(booking.batch_id))
+  end
+
   # to remove student
   def destroy
     @batch = Batch.find(params[:batch_id])
