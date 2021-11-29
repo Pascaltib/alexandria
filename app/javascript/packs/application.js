@@ -27,10 +27,12 @@ import "stylesheets/application";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { modalButtons } from '../components/modal_button';
+import { initFlatpickr } from "../plugins/flatpickr";
 
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   modalButtons();
+  initFlatpickr();
 });

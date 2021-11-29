@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 puts "Clearing database..."
 Booking.delete_all
 Cost.delete_all
@@ -14,7 +6,7 @@ User.delete_all
 
 puts "Creating seeds...."
 
-User.create!(
+test_user = User.create!(
   {
     email: "admin@gmail.com",
     password: "password",
@@ -23,19 +15,34 @@ User.create!(
     admin: true
   }
 )
+
+test_batch = Batch.create!(user: test_user, name: "Madrid", tuition_cost: 6500, start_date: "Mon, 29 Nov 2021", end_date: "Fri, 10 Dec 2021")
 count = 10
 11.times do
-  User.create!(
+  temp = URI.open("https://cdn.devdojo.com/images/june2021/avt-#{count}.jpg")
+  student = User.create!(
     {
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
       email: Faker::Internet.email,
       password: "password",
-      admin: false,
-      image_url: "https://cdn.devdojo.com/images/june2021/avt-#{count}.jpg"
+      admin: false
     }
   )
+  student.photo.attach(io: temp, filename: "nes.jpg", content_type: "image/jpg")
+  if count < 15
+    Booking.create!(user: student, batch: test_batch)
+  else
+    Booking.create!(user: student, batch: test_batch, status: "Accepted")
+  end
   count += 1
 end
+
+Cost.create!(name: "Rent", amount: 50_000, kind: "Fixed", batch: test_batch)
+Cost.create!(name: "Teacher Salary", amount: 5000, kind: "Fixed", batch: test_batch)
+Cost.create!(name: "Food", amount: 200, kind: "Variable", batch: test_batch)
+Cost.create!(name: "Drinks", amount: 100, kind: "Variable", batch: test_batch)
+Cost.create!(name: "Chairs", amount: 200, kind: "Variable", batch: test_batch)
+Cost.create!(name: "Tables", amount: 250, kind: "Variable", batch: test_batch)
 
 puts "Database created!"
