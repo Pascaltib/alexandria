@@ -24,7 +24,7 @@
                 <%= batch.name %>
               </h4>
               <h4 class="text-xl font-medium text-gray-700">
-                €<%= batch.tuition_cost %>
+                Tuition: €<%= number_with_delimiter(batch.tuition_cost, :delimiter => ",") %>
               </h4>
             </div>
           <% end %>
@@ -34,14 +34,39 @@
   </section>
 
   <%= render "form" , hidden:@hidden%>
-<% elsif @user.admin == false %>
+
+<% elsif @user.admin == false && @user.bookings.count == 0 %>
   <section class="py-20 bg-white">
-    <div class="container max-w-6xl mx-auto">
+    <div class="container max-w-6xl mx-auto flex flex-col items-center">
       <h2 class="text-4xl font-bold tracking-tight text-center">
-        Welcome back <%= @user.first_name %>!
+        Welcome <%= @user.first_name %>!
       </h2>
       <p class="mt-2 text-lg text-center text-gray-600">
         Upload your profile picture and select your cohort
       </p>
+      <%= simple_form_for ([@booking]), html: { class: 'flex flex-col items-center w-2/5' }  do |f| %>
+        <%= f.input :batch_id, label: false, collection: @batches, label_method: lambda{ |batch| "#{batch.name} #{batch.tuition_cost}" }, :value_method => :id, input_html: { style: 'width:200px;' }, prompt: "Select Cohort"  %>
+        <%= f.button :submit, "Apply to cohort", class: "w-4/12 text-center"%>
+      <% end %>
+    </div>
   </section>
-<% end  %>
+<% elsif @user.admin == false && @user.bookings.count > 0 %>
+  <section class="py-20 bg-white">
+    <div class="container max-w-6xl mx-auto flex flex-col items-center">
+      <h2 class="text-4xl font-bold tracking-tight text-center">
+        Welcome back <%= @user.first_name %>!
+      </h2>
+      <p class="mt-2 text-lg text-center text-gray-600">
+        Here is your cohort
+      </p>
+      <% @user.bookings.each do |booking| %>
+        <div>
+          Name: <%= Batch.find(booking.batch_id).name %>
+        </div>
+        <div>
+          Status: <%= booking.status %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+<% end %>
