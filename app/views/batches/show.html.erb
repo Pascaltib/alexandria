@@ -149,6 +149,9 @@
           <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-left">
                           Amount
                         </th>
+          <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-left">
+                          Recurring
+                        </th>
           <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-center">
                           Update
                         </th>
@@ -169,6 +172,9 @@
               </td>
               <td class="border-t-0 align-center border-l-0 border-r-0 text-left">
                 <%= number_with_delimiter(cost.amount, :delimiter => ",") %>
+              </td>
+              <td class="border-t-0 align-middle border-l-0 border-r-0 text-left">
+                <%= cost.recurring %>
               </td>
               <td class="border-t-0 align-center border-l-0 border-r-0 text-center">
                 <div>

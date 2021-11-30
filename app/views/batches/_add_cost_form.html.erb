@@ -29,7 +29,12 @@
                               label: false,
                               input_html: { autocomplete: "off" }, class: "block w-full rounded-lg focus:ring focus:ring-black focus:outline-none" %>
 
-                          <%= f.button :submit, "Add", class: "w-full text-sm bg-black cursor-pointer hover:bg-gray-600 text-white mt-0 rounded-lg" %>
+                  <%= f.input :recurring, collection: ["One Time", "Daily", "Weekly", "Monthly", "Yearly"], selected: 1,
+                              autofocus: true,
+                              label: false,
+                              input_html: { autocomplete: "off" }, class: "block w-full rounded-lg focus:ring focus:ring-black focus:outline-none" %>
+
+                  <%= f.button :submit, "Add", class: "w-full text-sm bg-black cursor-pointer hover:bg-gray-600 text-white mt-0 rounded-lg" %>
                       </div>
                   <% end %>
                   <span class="close-add-modal close-add-modal-x z-10"></span>
