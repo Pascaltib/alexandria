@@ -31,7 +31,7 @@
 
 <div class="thebiggestcontainer">
   <!-- Full Cards Container // Do Not Touch -->
-  <div class="container grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto gap-8">
+  <div class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto gap-8">
 
     <!-- Numbers Cards Container // Do Not Touch -->
     <section class="grid-cols-1 grid bg-white overflow-hidden rounded-2xl shadow-xl border">
@@ -44,7 +44,7 @@
         </div>
         <div class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden border-b border-gray-200 hover:bg-gray-50">
           <h4 class="text-lg text-left text-gray-700">
-            Tutition Cost
+            Tutition cost
           </h4>
           <div class="py-1 px-5 text-white bg-green-300 rounded-full">
             <h4>
@@ -107,11 +107,11 @@
         <div
           class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden hover:bg-gray-50">
           <h4 class="text-lg text-left text-gray-700">
-            Start Date
+            Start date
           </h4>
           <div class="py-1 px-5 text-white bg-gray-600 rounded-full">
             <h4>
-              <%= Batch.last.start_date %>
+              <%= "#{Date.parse(Batch.last.start_date.to_s).day}-#{Date.parse(Batch.last.start_date.to_s).month}-#{Date.parse(Batch.last.start_date.to_s).year}" %>
             </h4>
           </div>
         </div>
@@ -120,7 +120,7 @@
     <!-- End of Numbers Cards Container -->
 
     <!-- Graph Container // Do Not Touch -->
-    <section class="bg-white space-y-1 rounded-xl shadow-xl border grid grid-flow-col auto-cols-auto pr-4 py-2 col-span-2">
+    <section class="bg-white space-y-1 rounded-xl shadow-xl border grid grid-flow-col auto-cols-auto pr-4 py-2 col-span-1 md:col-span-2">
       <div class="self-center euro-sign pl-6">
         <span>€</span>
       </div>
@@ -131,13 +131,13 @@
           {name: "Variable Cost" , data: @variable_cost_data_arr, color: "#EC4899" },
           { name: "Revenue (tuition)" , data: @variable_income_data_arr, color: "#6EE7B7" },
           { name: "Total Cost" , data: @total_cost_data_arr,color: "#EF4444" }
-        ]), points: false, curve: false, xtitle: "Student count" , loading: "Loading..."
+        ]), points: false, curve: false, xtitle: "Student count" , loading: "Loading...", min: @min_value, max: @max_value
         %>
       </div>
     </section>
     <!-- End of Numbers Cards Container -->
 
-    <div class="container max-w-8xl mx-auto my-8 col-span-3 ">
+    <div class="container max-w-8xl mx-auto my-0 col-span-1 md:col-span-3 ">
       <div class="rounded-xl bg-white shadow-xl border">
         <!-- Costs Table -->
         <section>
