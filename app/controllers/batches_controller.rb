@@ -36,6 +36,9 @@ class BatchesController < ApplicationController
     @variable_income_data_arr = variable_income_data(graph_quantity, @batch)
     @total_cost_data_arr = total_cost_data(graph_quantity, @batch, @batch_days)
     @variable_cost_data_arr = variable_cost_data(graph_quantity, @batch)
+
+    @max_value = [@net_income_data_arr.max[1], @variable_income_data_arr.max[1], @total_cost_data_arr.max[1], @variable_cost_data_arr.max[1]].max.round + 10
+    @min_value = [@net_income_data_arr.min[1], @variable_income_data_arr.min[1], @total_cost_data_arr.min[1], @variable_cost_data_arr.min[1]].min.round - 10
   end
 
   def create
