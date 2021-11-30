@@ -39,6 +39,8 @@ class BookingsController < ApplicationController
     booking = Booking.find(params[:id])
     booking.status = "Accepted"
     booking.save!
+    # for the notification
+    flash[:notice] = "An email will be send to #{User.find(booking.user_id).first_name} #{User.find(booking.user_id).last_name}"
     redirect_to batch_users_path(Batch.find(booking.batch_id))
   end
 
