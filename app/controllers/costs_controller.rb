@@ -25,6 +25,8 @@ class CostsController < ApplicationController
       @total_cost_data_arr = total_cost_data(graph_quantity, @batch, @batch_days)
       @variable_cost_data_arr = variable_cost_data(graph_quantity, @batch)
 
+      @hidden = "hidden"
+      @hidden_cost = ""
       render "batches/show"
     end
   end
@@ -43,6 +45,25 @@ class CostsController < ApplicationController
     if @cost.update(cost_params)
       redirect_to batch_path(@batch)
     else
+      @students = []
+      User.where(admin: false).each do |student|
+        @batch.bookings.each do |booking|
+          @students << student if booking.user_id == student.id
+        end
+      end
+      @batch_days = @batch.end_date - @batch.start_date
+      @current_net_income = net_income_calc(@batch, @batch_days).round(2)
+      @break_even = break_even_calc(@batch, @batch_days).round(2)
+
+      # for the graph
+      graph_quantity = (@break_even.round * 3) + 10
+      @net_income_data_arr = net_income_data(graph_quantity, @batch, @batch_days)
+      @variable_income_data_arr = variable_income_data(graph_quantity, @batch)
+      @total_cost_data_arr = total_cost_data(graph_quantity, @batch, @batch_days)
+      @variable_cost_data_arr = variable_cost_data(graph_quantity, @batch)
+
+      @hidden = ""
+      @hidden_cost = "hidden"
       render "batches/show"
     end
   end
