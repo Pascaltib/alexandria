@@ -3,6 +3,21 @@ const modalButtons = () => {
 
   var showModal = document.querySelectorAll('.show-modal');
   var closeModal = document.querySelectorAll('.close-modal');
+  var showAddModal = document.querySelector('.show-add-modal')
+  var closeAddModal = document.querySelector('.close-add-modal')
+  var addModal = document.querySelector('.add-modal');
+
+  if (showAddModal){
+    showAddModal.addEventListener("click", function() {
+      addModal.classList.remove("hidden")
+    })
+  }
+  if (closeAddModal) {
+    closeAddModal.addEventListener("click", function () {
+      addModal.classList.add("hidden")
+    })
+  }
+
 
   if (showModal){
     showModal.forEach(element => {
