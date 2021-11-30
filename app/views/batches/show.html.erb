@@ -141,8 +141,11 @@
                         autofocus: true,
                         label: false,
                         input_html: { autocomplete: "off" }, class: "block w-full rounded-lg focus:ring focus:ring-black focus:outline-none" %>
-
-                    <%= f.button :submit, "Add", class: "w-full text-sm bg-black cursor-pointer hover:bg-gray-600 text-white mt-0 rounded-lg" %>
+            <%= f.input :recurring, collection: ["One Time", "Daily", "Weekly", "Monthly", "Yearly"], selected: 1,
+                        autofocus: true,
+                        label: false,
+                        input_html: { autocomplete: "off" }, class: "block w-full rounded-lg focus:ring focus:ring-black focus:outline-none" %>
+            <%= f.button :submit, "Add", class: "w-full text-sm bg-black cursor-pointer hover:bg-gray-600 text-white mt-0 rounded-lg" %>
                 </div>
               <% end %>
           </div>
@@ -185,6 +188,9 @@
           <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-left">
                           Amount
                         </th>
+          <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-left">
+                          Recurring
+                        </th>
           <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-center">
                           Update
                         </th>
@@ -205,6 +211,9 @@
               </td>
               <td class="border-t-0 align-center border-l-0 border-r-0 text-left">
                 <%= number_with_delimiter(cost.amount, :delimiter => ",") %>
+              </td>
+              <td class="border-t-0 align-middle border-l-0 border-r-0 text-left">
+                <%= cost.recurring %>
               </td>
               <td class="border-t-0 align-center border-l-0 border-r-0 text-center">
                 <div>
