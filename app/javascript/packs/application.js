@@ -28,6 +28,7 @@ import "stylesheets/application";
 // import { initSelect2 } from '../components/init_select2';
 import { modalButtons } from '../components/modal_button';
 import { initFlatpickr } from "../plugins/flatpickr";
+import { navbarButton } from "../components/navbar"
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -35,4 +36,5 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   modalButtons();
   initFlatpickr();
+  navbarButton();
 });
