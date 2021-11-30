@@ -19,11 +19,8 @@ class BatchesController < ApplicationController
     @batch = Batch.find(params[:id])
     @costs = @batch.costs
     @cost = Cost.new
-    @students = []
-    User.where(admin: false).each do |student|
-      @batch.bookings.each do |booking|
-        @students << student if booking.user_id == student.id
-      end
+    @students = @batch.bookings.where(status: "Accepted").map do |booking|
+      User.find(booking.user_id)
     end
 
     @batch_days = @batch.end_date - @batch.start_date
@@ -73,7 +70,7 @@ class BatchesController < ApplicationController
   end
 
   def net_income_calc(batch, days)
-    quantity = batch.bookings.count
+    quantity = @batch.bookings.where(status: "Accepted").count
     total_fixed_cost = total_fixed_cost_calc(batch, days)
     total_variable_cost = batch.costs.where(kind: "Variable").sum(&:amount)
     variable_revenue = batch.tuition_cost
