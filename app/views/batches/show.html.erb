@@ -108,57 +108,18 @@
             %>
 
     </div>
-    <%# raise %>
   </section>
   <!-- End of Numbers Cards Container -->
 
-
-<section class="grid-cols-1 grid bg-white overflow-hidden rounded-2xl shadow-xl border">
-  <div class="grid grid-cols-1">
-    <div class="w-full flex flex-col items-start pl-6 pt-4 pb-2 mb-4 justify-between col-span-4 bg-white overflow-hidden border-b border-gray-100">
-      <h6 class="text-xl font-medium text-center">Add a new Cost</h6>
-    </div>
-
-  <section class="w-full content-center">
-        <div class="px-8">
-          <div class="flex flex-col items-center">
-            <div class="w-full">
-
-            <%= simple_form_for [@batch, @cost], class: "" do |f| %>
-            <%= f.input :name,
-                        autofocus: true,
-                        label: false,
-                        placeholder: "Name",
-                        input_html: { autocomplete: "off" }, class: "block w-full rounded-lg focus:ring focus:ring-black focus:outline-none" %>
-
-            <%= f.input :amount,
-                        autofocus: true,
-                        label: false,
-                        placeholder: "Amount",
-                        input_html: { autocomplete: "off" }, class: "block w-full rounded-lg focus:ring focus:ring-black focus:outline-none" %>
-
-            <%= f.input :kind, collection: ["Fixed", "Variable"], prompt: "Type",
-                        autofocus: true,
-                        label: false,
-                        input_html: { autocomplete: "off" }, class: "block w-full rounded-lg focus:ring focus:ring-black focus:outline-none" %>
-            <%= f.input :recurring, collection: ["One Time", "Daily", "Weekly", "Monthly", "Yearly"], selected: 1,
-                        autofocus: true,
-                        label: false,
-                        input_html: { autocomplete: "off" }, class: "block w-full rounded-lg focus:ring focus:ring-black focus:outline-none" %>
-            <%= f.button :submit, "Add", class: "w-full text-sm bg-black cursor-pointer hover:bg-gray-600 text-white mt-0 rounded-lg" %>
-                </div>
-              <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  </div>
-</section>
+<%# add new cost modal %>
 
 
+  <button type="submit" class="text-md px-4 py-1 my-0 bg-transparent cursor-pointer hover:underline text-black rounded-lg show-add-modal text-center">
+    Add new cost
+  </button>
 
+
+<%# /add new cost modal %>
 
 
 <div class="container max-w-8xl mx-auto my-8 ">
@@ -244,6 +205,8 @@
     <% @costs.each do |cost| %>
       <%= render "costform", cost:cost %>
     <% end %>
+
+    <%= render "add_cost_form" %>
 
   </div>
   <!-- End of Full Cards Container -->
