@@ -203,10 +203,10 @@
 </div>
 
     <% @costs.each do |cost| %>
-      <%= render "costform", cost:cost %>
+      <%= render "costform", cost:cost, hidden: @hidden %>
     <% end %>
 
-    <%= render "add_cost_form" %>
+    <%= render "add_cost_form", hidden: @hidden_cost %>
 
   </div>
   <!-- End of Full Cards Container -->
