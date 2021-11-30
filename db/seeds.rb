@@ -38,11 +38,11 @@ count = 10
   count += 1
 end
 
-Cost.create!(name: "Rent", amount: 50_000, kind: "Fixed", batch: test_batch)
-Cost.create!(name: "Teacher Salary", amount: 5000, kind: "Fixed", batch: test_batch)
-Cost.create!(name: "Food", amount: 200, kind: "Variable", batch: test_batch)
-Cost.create!(name: "Drinks", amount: 100, kind: "Variable", batch: test_batch)
-Cost.create!(name: "Chairs", amount: 200, kind: "Variable", batch: test_batch)
-Cost.create!(name: "Tables", amount: 250, kind: "Variable", batch: test_batch)
+Cost.create!(name: "Rent", amount: 50_000, kind: "Fixed", batch: test_batch, recurring: "Yearly")
+Cost.create!(name: "Teacher Salary", amount: 5000, kind: "Fixed", batch: test_batch, recurring: "Monthly")
+Cost.create!(name: "Food", amount: 200, kind: "Variable", batch: test_batch, recurring: "One Time")
+Cost.create!(name: "Drinks", amount: 100, kind: "Variable", batch: test_batch, recurring: "One Time")
+Cost.create!(name: "Chairs", amount: 200, kind: "Variable", batch: test_batch, recurring: "One Time")
+Cost.create!(name: "Tables", amount: 250, kind: "Variable", batch: test_batch, recurring: "One Time")
 
 puts "Database created!"

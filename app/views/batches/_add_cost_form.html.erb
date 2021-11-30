@@ -1,0 +1,49 @@
+<div class="add-modal <%=hidden%>">
+  <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg">
+          <div class="max-w-2xl mx-auto">
+            <div class="flex flex-col items-center md:flex-row justify-center">
+              <div class="w-full mt-4 md:mt-0 md:w-full">
+                <div class="relative z-10 h-auto p-6 overflow-hidden bg-white border-solid border-2 border-gray-100 rounded-lg">
+                  <h6 class="mb-6 text-xl font-medium text-center">Add new Cost</h6>
+                  <%= simple_form_for [@batch, @cost], class: "" do |f| %>
+                  <%= f.input :name,
+                              autofocus: true,
+                              label: false,
+                              placeholder: "Name",
+                              input_html: { autocomplete: "off" }, class: "block w-full rounded-lg focus:ring focus:ring-black focus:outline-none" %>
+
+                  <%= f.input :amount,
+                              autofocus: true,
+                              label: false,
+                              placeholder: "Amount",
+                              input_html: { autocomplete: "off" }, class: "block w-full rounded-lg focus:ring focus:ring-black focus:outline-none" %>
+
+                  <%= f.input :kind, collection: ["Fixed", "Variable"], prompt: "Type",
+                              autofocus: true,
+                              label: false,
+                              input_html: { autocomplete: "off" }, class: "block w-full rounded-lg focus:ring focus:ring-black focus:outline-none" %>
+
+                  <%= f.input :recurring, collection: ["One Time", "Daily", "Weekly", "Monthly", "Yearly"], selected: 1,
+                              autofocus: true,
+                              label: false,
+                              input_html: { autocomplete: "off" }, class: "block w-full rounded-lg focus:ring focus:ring-black focus:outline-none" %>
+
+                  <%= f.button :submit, "Add", class: "w-full text-sm bg-black cursor-pointer hover:bg-gray-600 text-white mt-0 rounded-lg" %>
+                      </div>
+                  <% end %>
+                  <span class="close-add-modal close-add-modal-x z-10"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
