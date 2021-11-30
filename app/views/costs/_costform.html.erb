@@ -30,6 +30,11 @@
                                       label: false,
                                       placeholder: "Type",
                                       input_html: { autocomplete: "off" }, class: "block w-full px-4 my-0 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-black focus:outline-none" %>
+                          <%= f.input :recurring, collection: ["One Time", "Daily", "Weekly", "Monthly", "Yearly"], selected: 1,
+                              autofocus: true,
+                              label: false,
+                              input_html: { autocomplete: "off" }, class: "block w-full rounded-lg focus:ring focus:ring-black focus:outline-none" %>
+
                           <div>
                             <%= f.button :submit, "Update", class: "px-1 my-0 bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg" %>
                           </div>
