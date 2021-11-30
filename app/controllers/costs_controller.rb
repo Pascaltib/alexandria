@@ -14,14 +14,15 @@ class CostsController < ApplicationController
           @students << student if booking.user_id == student.id
         end
       end
-      @current_net_income = net_income_calc(@batch).round(2)
-      @break_even = break_even_calc(@batch).round(2)
       @batch_days = @batch.end_date - @batch.start_date
+      @current_net_income = net_income_calc(@batch, @batch_days).round(2)
+      @break_even = break_even_calc(@batch, @batch_days).round(2)
 
+      # for the graph
       graph_quantity = (@break_even.round * 3) + 10
-      @net_income_data_arr = net_income_data(graph_quantity, @batch)
+      @net_income_data_arr = net_income_data(graph_quantity, @batch, @batch_days)
       @variable_income_data_arr = variable_income_data(graph_quantity, @batch)
-      @total_cost_data_arr = total_cost_data(graph_quantity, @batch)
+      @total_cost_data_arr = total_cost_data(graph_quantity, @batch, @batch_days)
       @variable_cost_data_arr = variable_cost_data(graph_quantity, @batch)
 
       render "batches/show"
@@ -53,16 +54,20 @@ class CostsController < ApplicationController
   end
 
   # For dashboard data infobox
-  def break_even_calc(batch)
-    total_fixed_cost = batch.costs.where(kind: "Fixed").sum(&:amount)
+  def total_fixed_cost_calc(batch, days)
+    return batch.costs.where(kind: "Fixed", recurring: "One Time").sum(&:amount) + (batch.costs.where(kind: "Fixed", recurring: "Daily").sum(&:amount) * days) + (batch.costs.where(kind: "Fixed", recurring: "Weekly").sum(&:amount) * (days/7.0)) + (batch.costs.where(kind: "Fixed", recurring: "Monthly").sum(&:amount) * (days/30.437)) + (batch.costs.where(kind: "Fixed", recurring: "Yearly").sum(&:amount) * (days/365.0))
+  end
+
+  def break_even_calc(batch, days)
+    total_fixed_cost = total_fixed_cost_calc(batch, days)
     total_variable_cost = batch.costs.where(kind: "Variable").sum(&:amount)
     variable_revenue = batch.tuition_cost
     return total_fixed_cost / (variable_revenue - total_variable_cost)
   end
 
-  def net_income_calc(batch)
+  def net_income_calc(batch, days)
     quantity = batch.bookings.count
-    total_fixed_cost = batch.costs.where(kind: "Fixed").sum(&:amount)
+    total_fixed_cost = total_fixed_cost_calc(batch, days)
     total_variable_cost = batch.costs.where(kind: "Variable").sum(&:amount)
     variable_revenue = batch.tuition_cost
     return (quantity * variable_revenue) - (quantity * total_variable_cost) - total_fixed_cost
@@ -70,11 +75,11 @@ class CostsController < ApplicationController
 
   # For graph lines
 
-  def net_income_data(quantity, batch)
+  def net_income_data(quantity, batch, days)
     arr = []
     count = 0
     quantity.times do
-      val = (count * (batch.tuition_cost - batch.costs.where(kind: "Variable").sum(&:amount))) - batch.costs.where(kind: "Fixed").sum(&:amount)
+      val = (count * (batch.tuition_cost - batch.costs.where(kind: "Variable").sum(&:amount))) - total_fixed_cost_calc(batch, days).round(2)
       arr << [count, val]
       count += 1
     end
@@ -92,11 +97,11 @@ class CostsController < ApplicationController
     arr
   end
 
-  def total_cost_data(quantity, batch)
+  def total_cost_data(quantity, batch, days)
     arr = []
     count = 0
     quantity.times do
-      val = (count * batch.costs.where(kind: "Variable").sum(&:amount)) + batch.costs.where(kind: "Fixed").sum(&:amount)
+      val = (count * batch.costs.where(kind: "Variable").sum(&:amount)) + total_fixed_cost_calc(batch, days).round(2)
       arr << [count, val]
       count += 1
     end
