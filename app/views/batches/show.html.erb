@@ -42,41 +42,15 @@
             Cohort Data
           </h6>
         </div>
-        <div class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden border-b border-gray-200 hover:bg-gray-50">
-          <h4 class="text-lg text-left text-gray-700">
-            Tutition cost
-          </h4>
-          <div class="py-1 px-5 text-white bg-green-300 rounded-full">
-            <h4>
-              €<%= number_with_delimiter(@batch.tuition_cost, :delimiter=> ",") %>
-            </h4>
-          </div>
-        </div>
-      </div>
 
-      <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
-        <div
-          class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden border-b border-gray-200 hover:bg-gray-50">
-          <h4 class="text-lg text-left text-gray-700">
+
+        <div class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden border-b border-gray-200 hover:bg-gray-50">
+          <h4 class="text-lg font-medium text-left text-gray-900">
             Amount of students to break even
           </h4>
-          <div class="py-1 px-5 text-white bg-gray-600 rounded-full">
+          <div class="py-1 px-5 text-white bg-yellow-400 rounded-full">
             <h4>
               <%= number_with_delimiter(@break_even, :delimiter=> ",") %>
-            </h4>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
-        <div
-          class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden border-b border-gray-200 hover:bg-gray-50">
-          <h4 class="text-lg text-left text-gray-700">
-            Number of students in the Cohort
-          </h4>
-          <div class="py-1 px-5 text-white bg-gray-600 rounded-full">
-            <h4>
-              <%= number_with_delimiter(@students.count, :delimiter=> ",") %>
             </h4>
           </div>
         </div>
@@ -100,6 +74,36 @@
               <h4>€<%= number_with_delimiter(@current_net_income, :delimiter=> ",") %></h4>
             </div>
           <% end %>
+        </div>
+      </div>
+
+
+      <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden border-b border-gray-200 hover:bg-gray-50">
+          <h4 class="text-lg text-left text-gray-700">
+            Number of students in the Cohort
+          </h4>
+          <div class="py-1 px-5 text-white bg-gray-600 rounded-full">
+            <h4>
+              <%= number_with_delimiter(@students.count, :delimiter=> ",") %>
+            </h4>
+          </div>
+        </div>
+      </div>
+
+
+
+        <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden border-b border-gray-200 hover:bg-gray-50">
+          <h4 class="text-lg text-left text-gray-700">
+            Tutition cost
+          </h4>
+          <div class="py-1 px-5 text-white bg-gray-600 rounded-full">
+            <h4>
+              €<%= number_with_delimiter(@batch.tuition_cost, :delimiter=> ",") %>
+            </h4>
+          </div>
         </div>
       </div>
 
@@ -127,10 +131,10 @@
       <div class="self-center cost-graph">
         <% @trial=0 %>
         <%= line_chart ([
-          {name: "Net Income" , data: @net_income_data_arr, color: '#8B5CF6' },
-          {name: "Variable Cost" , data: @variable_cost_data_arr, color: "#EC4899" },
-          { name: "Revenue (tuition)" , data: @variable_income_data_arr, color: "#6EE7B7" },
-          { name: "Total Cost" , data: @total_cost_data_arr,color: "#EF4444" }
+          {name: "Net Income" , data: @net_income_data_arr, color: '#10B981' },
+          {name: "Variable Cost" , data: @variable_cost_data_arr, color: "#00BFFF" },
+          { name: "Revenue (tuition)" , data: @variable_income_data_arr, color: "#FF1493" },
+          { name: "Total Cost" , data: @total_cost_data_arr,color: "#FF7F50" }
         ]), points: false, curve: false, xtitle: "Student count" , loading: "Loading...", min: @min_value, max: @max_value
         %>
       </div>
