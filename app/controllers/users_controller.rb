@@ -13,6 +13,7 @@ class UsersController < ApplicationController
       @students.each do |individual|
         if individual.first_name.downcase == params[:query].downcase || individual.last_name.downcase == params[:query].downcase
           @student_search << individual
+
         end
       end
       @students = @student_search
@@ -44,4 +45,5 @@ class UsersController < ApplicationController
   # def student_params
   #   params.require(:user).permit(:first_name, :last_name, :email, :photo)
   # end
+
 end

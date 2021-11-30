@@ -52,6 +52,9 @@
                     <p class="text-gray-400 font-normal">  Add <i class="fas fa-angle-right"></i></p>
                   <% end %>
                 <% end %>
+
+                <% if "#{User.find(booking.user_id).first_name} #{User.find(booking.user_id).last_name}" %>
+                <% end %>
               </div>
             <% end %>
           </details>

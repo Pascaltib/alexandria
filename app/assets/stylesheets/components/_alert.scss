@@ -2,5 +2,15 @@
   position: fixed;
   bottom: 16px;
   right: 16px;
-  z-index: 1000;
+  z-index: 100;
+  animation: ease-in-out;
+  display: block;
+  animation: hideAnimation 0s ease-in 4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes hideAnimation {
+  to {
+    visibility: hidden;
+  }
 }
