@@ -1,15 +1,15 @@
 
 <!-- Section 1 -->
-<section class="relative py-20 overflow-hidden bg-gray-50">
-  <span class="absolute top-0 right-0 flex flex-col items-end mt-0 -mr-16 opacity-100">
+<section class="relative py-10 overflow-hidden bg-gray-50 px-16">
+  <span class="absolute top-0 right-0 flex flex-col items-end mt-0 opacity-100">
       <span class="container hidden w-screen h-32 max-w-xs mt-20 transform rounded-full rounded-r-none md:block md:max-w-xs lg:max-w-lg 2xl:max-w-3xl bg-blue-50"></span>
   </span>
 
   <span class="absolute bottom-0 left-0"> </span>
 
-  <div class="relative px-16 mx-auto max-w-7xl">
+  <div class="container relative mx-auto max-w-8xl">
     <%= link_to batch_path(@batch) do %>
-      <span class="w-20 text-md bg-transparent font-medium text-start cursor-pointer text-black hover:text-gray-300 rounded-lg"><i class="fas fa-angle-left"></i> Go back</span>
+      <span class="w-20 text-lg bg-transparent font-medium text-start cursor-pointer text-black hover:text-gray-300 rounded-lg"><i class="fas fa-angle-left"></i> Go back</span>
     <% end %>
     <p class="mt-3 font-medium tracking-wide text-gray-500 uppercase">Welcome to students page <%= @batch.name %></p>
 
@@ -72,7 +72,7 @@
     </div>
 
     <%# Student Grid %>
-    <div class="grid w-full gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-5">
+    <div class="grid w-full gap-10 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 mt-5">
       <% @students.each do |student| %>
         <div class="flex flex-col items-center justify-center col-span-1">
           <div class="relative p-5">
