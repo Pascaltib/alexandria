@@ -3,14 +3,26 @@
 <section class="py-10">
   <div class="container max-w-8xl mx-auto">
     <%= link_to batches_path do %>
-      <span class="w-20 text-lg bg-transparent font-medium text-start cursor-pointer text-black hover:text-gray-300 rounded-lg"><i class="fas fa-angle-left"></i> Go back</span>
+      <span class="w-20 text-lg bg-transparent font-medium text-start cursor-pointer text-black hover:text-gray-300 rounded-lg">
+        <i class="fas fa-angle-left"></i> Go back
+      </span>
     <% end %>
-    <h2 class="text-4xl font-bold tracking-tight text-start mt-2"><%= @batch.name %> Dashboard</h2>
-    <p class="mt-2 text-lg text-start text-gray-600">Review your Students, Costs, and Break Even Point.</p>
+    <h2 class="text-4xl font-bold tracking-tight text-start mt-2">
+      <%= @batch.name %> Dashboard
+    </h2>
+    <p class="mt-2 text-lg text-start text-gray-600">
+      Review your Students, Costs, and Break Even Point.
+    </p>
     <div class="flex gap-2 button-center text-start">
-    <%= link_to batch_users_path(@batch) do %>
-      <button class="w-auto text-sm bg-black font-medium text-start cursor-pointer py-2 px-4 hover:bg-gray-500 text-white my-3 rounded-lg"><%= @batch.name %> Students</button>
-    <% end %>
+      <%= link_to batch_users_path(@batch) do %>
+        <button class="w-auto text-sm bg-black font-medium text-start cursor-pointer py-2 px-4 hover:bg-gray-500 text-white my-3 rounded-lg">
+          <%= @batch.name %> Students
+        </button>
+      <% end %>
+      <button
+        class="w-auto text-sm bg-black font-medium text-start cursor-pointer py-2 px-4 hover:bg-gray-500 text-white my-3 rounded-lg show-add-modal">
+        Add Cost
+      </button>
     </div>
   </div>
 </section>
@@ -18,197 +30,199 @@
 <!-- End of Header -->
 
 <div class="thebiggestcontainer">
+  <!-- Full Cards Container // Do Not Touch -->
+  <div class="container grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto gap-8">
 
-<!-- Full Cards Container // Do Not Touch -->
-<div class="container grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto gap-8">
+    <!-- Numbers Cards Container // Do Not Touch -->
+    <section class="grid-cols-1 grid bg-white overflow-hidden rounded-2xl shadow-xl border">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 
-  <!-- Numbers Cards Container // Do Not Touch -->
-  <section class="grid-cols-1 grid bg-white overflow-hidden rounded-2xl shadow-xl border">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-
-      <div class="w-full flex flex-col items-start pl-6 pt-4 pb-2 justify-between col-span-4 bg-white overflow-hidden border-b border-gray-100">
-        <h6 class="text-xl font-medium text-center">Cohort Data</h6>
+        <div class="w-full flex flex-col items-start pl-6 pt-4 pb-2 justify-between col-span-4 bg-white overflow-hidden border-b border-gray-100">
+          <h6 class="text-xl font-medium text-center">
+            Cohort Data
+          </h6>
         </div>
         <div class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden border-b border-gray-200 hover:bg-gray-50">
-          <h4 class="text-lg text-left text-gray-700">Tutition Cost</h4>
+          <h4 class="text-lg text-left text-gray-700">
+            Tutition Cost
+          </h4>
           <div class="py-1 px-5 text-white bg-green-300 rounded-full">
-            <h4>€<%= number_with_delimiter(@batch.tuition_cost, :delimiter => ",") %></h4>
+            <h4>
+              €<%= number_with_delimiter(@batch.tuition_cost, :delimiter=> ",") %>
+            </h4>
           </div>
         </div>
-    </div>
+      </div>
 
-    <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
-      <div class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden border-b border-gray-200 hover:bg-gray-50">
-        <h4 class="text-lg text-left text-gray-700">Amount of students to break even</h4>
-        <div class="py-1 px-5 text-white bg-gray-600 rounded-full">
-          <h4><%= number_with_delimiter(@break_even, :delimiter => ",") %></h4>
+      <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden border-b border-gray-200 hover:bg-gray-50">
+          <h4 class="text-lg text-left text-gray-700">
+            Amount of students to break even
+          </h4>
+          <div class="py-1 px-5 text-white bg-gray-600 rounded-full">
+            <h4>
+              <%= number_with_delimiter(@break_even, :delimiter=> ",") %>
+            </h4>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
-      <div class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden border-b border-gray-200 hover:bg-gray-50">
-        <h4 class="text-lg text-left text-gray-700">Number of students in the Cohort</h4>
-        <div class="py-1 px-5 text-white bg-gray-600 rounded-full">
-          <h4><%= number_with_delimiter(@students.count, :delimiter => ",") %></h4>
+      <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden border-b border-gray-200 hover:bg-gray-50">
+          <h4 class="text-lg text-left text-gray-700">
+            Number of students in the Cohort
+          </h4>
+          <div class="py-1 px-5 text-white bg-gray-600 rounded-full">
+            <h4>
+              <%= number_with_delimiter(@students.count, :delimiter=> ",") %>
+            </h4>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-      <div class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden hover:bg-gray-50">
-        <h4 class="text-lg text-left text-gray-700">Net income</h4>
-        <% if @current_net_income > 0 %>
-          <div class="py-1 px-5 text-white bg-green-300 rounded-full">
-            <h4>€<%= number_with_delimiter(@current_net_income, :delimiter => ",") %></h4>
-          </div>
-        <% elsif @current_net_income < 0 %>
-          <div class="py-1 px-5 text-white bg-red-400 rounded-full">
-            <h4>€<%= number_with_delimiter(@current_net_income, :delimiter => ",") %></h4>
-          </div>
-        <% else %>
-          <div class="py-1 px-5 text-gray-700 bg-gray-400 rounded-full">
-            <h4>€<%= number_with_delimiter(@current_net_income, :delimiter => ",")  %></h4>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </section>
-  <!-- End of Numbers Cards Container -->
-
-  <!-- Graph Container // Do Not Touch -->
-  <section class="bg-white space-y-1 rounded-xl shadow-xl border grid grid-flow-col auto-cols-auto pr-4 py-2">
-    <div class="self-center euro-sign pl-6">
-      <span >€</span>
-    </div>
-    <div class="self-center cost-graph">
-        <% @trial = 0 %>
-        <%= line_chart (
-        [
-          {
-            name: "Net Income",
-            data: @net_income_data_arr, color: '#8B5CF6'
-          },
-          {
-            name: "Variable Cost",
-            data: @variable_cost_data_arr, color: "#EC4899"
-          },
-          {
-            name: "Revenue (tuition)",
-            data: @variable_income_data_arr, color: "#6EE7B7"
-          },
-          {
-            name: "Total Cost",
-            data: @total_cost_data_arr, color: "#EF4444"
-          }
-        ]
-        ), points: false, curve: false,
-            xtitle: "Student count",
-            loading: "Loading..."
-            %>
-
-    </div>
-  </section>
-  <!-- End of Numbers Cards Container -->
-
-<%# add new cost modal %>
-
-
-  <button type="submit" class="text-md px-4 py-1 my-0 bg-transparent cursor-pointer hover:underline text-black rounded-lg show-add-modal text-center">
-    Add new cost
-  </button>
-
-
-<%# /add new cost modal %>
-
-
-<div class="container max-w-8xl mx-auto my-8 ">
-<div class="rounded-xl bg-white shadow-xl border">
-<!-- Costs Table -->
-<section>
-<div>
-  <div class="relative flex flex-col bg-white w-full rounded-xl ">
-    <div class="">
-      <div class="">
-        <div class="rounded-xl w-full flex flex-col items-start pl-6 pt-4 mb-4 justify-between col-span-4 bg-white overflow-hidden">
-          <h3 class="text-xl font-medium text-center">My Costs</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden border-b border-gray-200 hover:bg-gray-50">
+          <h4 class="text-lg text-left text-gray-700">
+            Net income
+          </h4>
+          <% if @current_net_income> 0 %>
+            <div class="py-1 px-5 text-white bg-green-300 rounded-full">
+              <h4>€<%= number_with_delimiter(@current_net_income, :delimiter=> ",") %></h4>
+            </div>
+          <% elsif @current_net_income < 0 %>
+            <div class="py-1 px-5 text-white bg-red-400 rounded-full">
+              <h4>€<%= number_with_delimiter(@current_net_income, :delimiter=> ",") %></h4>
+            </div>
+          <% else %>
+            <div class="py-1 px-5 text-gray-700 bg-gray-400 rounded-full">
+              <h4>€<%= number_with_delimiter(@current_net_income, :delimiter=> ",") %></h4>
+            </div>
+          <% end %>
         </div>
       </div>
-    </div>
 
-    <div class="w-full">
-      <table class="bg-transparent w-full table-fixed">
-        <thead>
-          <tr class="text-sm bg-gray-50">
-          <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-left pl-6">
-                          Cost name
-                        </th>
-          <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-left">
-                          Type
-                        </th>
-          <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-left">
-                          Amount
-                        </th>
-          <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-left">
-                          Recurring
-                        </th>
-          <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-center">
-                          Update
-                        </th>
-          <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-center">
-                          Delete
-                        </th>
-          </tr>
-        </thead>
+      <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          class="w-full flex items-center justify-between px-6 col-span-4 bg-white p-2 overflow-hidden hover:bg-gray-50">
+          <h4 class="text-lg text-left text-gray-700">
+            Start Date
+          </h4>
+          <div class="py-1 px-5 text-white bg-gray-600 rounded-full">
+            <h4>
+              <%= Batch.last.start_date %>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End of Numbers Cards Container -->
 
-        <tbody>
-          <% @costs.each do |cost| %>
-            <tr class="border-b text-left hover:bg-gray-50 h-12">
-              <th class="border-t-0 align-middle border-l-0 border-r-0 text-left pl-6 font-medium">
-                <%= cost.name %>
-              </th>
-              <td class="border-t-0 align-middle border-l-0 border-r-0 text-left">
-                <%= cost.kind %>
-              </td>
-              <td class="border-t-0 align-center border-l-0 border-r-0 text-left">
-                <%= number_with_delimiter(cost.amount, :delimiter => ",") %>
-              </td>
-              <td class="border-t-0 align-middle border-l-0 border-r-0 text-left">
-                <%= cost.recurring %>
-              </td>
-              <td class="border-t-0 align-center border-l-0 border-r-0 text-center">
-                <div>
-                  <button type="submit" class="text-md px-4 py-1 my-0 bg-transparent cursor-pointer hover:underline text-black rounded-lg show-modal text-center" data-cost_id="<%=cost.id%>">
-                    Update
-                  </button>
+    <!-- Graph Container // Do Not Touch -->
+    <section class="bg-white space-y-1 rounded-xl shadow-xl border grid grid-flow-col auto-cols-auto pr-4 py-2 col-span-2">
+      <div class="self-center euro-sign pl-6">
+        <span>€</span>
+      </div>
+      <div class="self-center cost-graph">
+        <% @trial=0 %>
+        <%= line_chart ([
+          {name: "Net Income" , data: @net_income_data_arr, color: '#8B5CF6' },
+          {name: "Variable Cost" , data: @variable_cost_data_arr, color: "#EC4899" },
+          { name: "Revenue (tuition)" , data: @variable_income_data_arr, color: "#6EE7B7" },
+          { name: "Total Cost" , data: @total_cost_data_arr,color: "#EF4444" }
+        ]), points: false, curve: false, xtitle: "Student count" , loading: "Loading..."
+        %>
+      </div>
+    </section>
+    <!-- End of Numbers Cards Container -->
+
+    <div class="container max-w-8xl mx-auto my-8 col-span-3 ">
+      <div class="rounded-xl bg-white shadow-xl border">
+        <!-- Costs Table -->
+        <section>
+          <div>
+            <div class="relative flex flex-col bg-white w-full rounded-xl ">
+              <div class="">
+                <div class="">
+                  <div
+                    class="rounded-xl w-full flex flex-col items-start pl-6 pt-4 mb-4 justify-between col-span-4 bg-white overflow-hidden">
+                    <h3 class="text-xl font-medium text-center">My Costs</h3>
+                  </div>
                 </div>
-              </td>
-              <td class="border-t-0 align-center border-l-0 border-r-0 text-center">
-                  <%= simple_form_for [@batch, cost], method: :delete do |f| %>
-                  <button type="submit" class="text-md font-medium px-4 py-1 my-0 bg-trasparent cursor-pointer hover:underline text-red-600 rounded-lg text-center" data-cost_id="<%=cost.id%>">
-                    Delete
-                  </button>
-                  <% end %>
-              </td>
-            </tr>
-            <% end %>
-        </tbody>
-      </table>
+              </div>
+
+              <div class="w-full">
+                <table class="bg-transparent w-full table-fixed">
+                  <thead>
+                    <tr class="text-sm bg-gray-50">
+                      <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-left pl-6">
+                        Cost name
+                      </th>
+                      <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-left">
+                        Type
+                      </th>
+                      <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-left">
+                        Amount
+                      </th>
+                      <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-left">
+                        Recurring
+                      </th>
+                      <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-center">
+                        Update
+                      </th>
+                      <th class="align-middle border py-3 uppercase border-l-0 border-r-0 text-center">
+                        Delete
+                      </th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <% @costs.each do |cost| %>
+                      <tr class="border-b text-left hover:bg-gray-50 h-12">
+                        <th class="border-t-0 align-middle border-l-0 border-r-0 text-left pl-6 font-medium">
+                          <%= cost.name %>
+                        </th>
+                        <td class="border-t-0 align-middle border-l-0 border-r-0 text-left">
+                          <%= cost.kind %>
+                        </td>
+                        <td class="border-t-0 align-center border-l-0 border-r-0 text-left">
+                          <%= number_with_delimiter(cost.amount, :delimiter=> ",") %>
+                        </td>
+                        <td class="border-t-0 align-middle border-l-0 border-r-0 text-left">
+                          <%= cost.recurring %>
+                        </td>
+                        <td class="border-t-0 align-center border-l-0 border-r-0 text-center">
+                          <div>
+                            <button type="submit"
+                              class="text-md px-4 py-1 my-0 bg-transparent cursor-pointer hover:underline text-black rounded-lg show-modal text-center"
+                              data-cost_id="<%=cost.id%>">
+                              Update
+                            </button>
+                          </div>
+                        </td>
+                        <td class="border-t-0 align-center border-l-0 border-r-0 text-center">
+                          <%= simple_form_for [@batch, cost], method: :delete do |f| %>
+                            <button type="submit"
+                              class="text-md font-medium px-4 py-1 my-0 bg-trasparent cursor-pointer hover:underline text-red-600 rounded-lg text-center"
+                              data-cost_id="<%=cost.id%>">
+                              Delete
+                            </button>
+                            <% end %>
+                        </td>
+                      </tr>
+                      <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
-  </div>
-</div>
-
-
-</section>
-</div>
-
     <% @costs.each do |cost| %>
-      <%= render "costform", cost:cost, hidden: @hidden %>
+      <%= render "costform" , cost:cost, hidden: @hidden %>
     <% end %>
-
-    <%= render "add_cost_form", hidden: @hidden_cost %>
-
+    <%= render "add_cost_form" , hidden: @hidden_cost %>
   </div>
-  <!-- End of Full Cards Container -->
 </div>
-<!-- End of The Biggest Container -->
