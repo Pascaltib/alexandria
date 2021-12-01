@@ -1,36 +1,36 @@
 <!-- First time access as a student -->
 
 <% if @user.admin == true %>
-  <section class="pt-20 pb-0" style="background-color: #f6f6f6">
+  <section class="pt-20 pb-0" style="background-color: white">
     <div class="container max-w-6xl mx-auto">
-      <h2 class="text-4xl font-medium tracking-normal text-center">
+      <h2 class="text-4xl font-medium tracking-normal text-center" style="color: #0A2540">
         Welcome back <%= @user.first_name %>!
       </h2>
-      <p class="mt-2 text-lg font-normal text-center text-gray-600">
-        Create and Access your Cohorts.
+      <p class="mt-2 text-lg font-normal text-center" style="color: #0A2540">
+        Create and access your cohorts.
       </p>
       <div class="flex justify-center">
         <button class="add_cohort_button my-3 text-white font-normal text-sm py-2 px-4 rounded show-modal">
-          Add a New Cohort
+          Add a new cohort
         </button>
       </div>
       <div class="grid grid-cols-1 gap-4 mt-10 sm:grid-cols-2 lg:grid-cols-2 px-8 w-4/5 mx-auto">
         <% count = 0 %>
         <% @batches.each do |batch| %>
           <%= link_to batch_path(batch) do %>
-            <div class="cohort-card relative flex flex-col items-left justify-around col-span-3 px-4 py-4 space-y-2 overflow-hidden sm:rounded-lg bg-white shadow-md">
+            <div class="cohort-card relative flex flex-col items-left justify-around col-span-3 px-4 py-4 space-y-2 overflow-hidden sm:rounded-lg bg-white" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
               <div class="flex justify-between">
-              <div class="h-12 w-12 flex items-center justify-center text-white bg-black rounded-full">
+              <div class="h-12 w-12 flex items-center justify-center text-white rounded-full" style="background-color: #0A2540">
                 <h4 class="text-bold"><%= batch.name.chars.first %></h4>
               </div>
                 <div>
-                <h6 class="font-normal text-gray-900 text-right"><span class="font-light text-gray-500">Start Date:</span><br> <%= batch.start_date %></h6>
+                <h6 class="font-normal text-gray-900 text-right"><span class="font-light" style="color: #0A2540">Start Date:</span><br> <%= batch.start_date %></h6>
                 </div>
                 </div>
-                <h2 class="text-2xl font-medium text-gray-900"><span class="font-light text-gray-500"></span> <%= batch.name %></h2>
+                <h2 class="text-2xl font-medium text-gray-900"><span class="font-light" style="color: #0A2540"></span> <%= batch.name %></h2>
                 <div class="flex justify-between items-end">
                 <div>
-                <h6 class="text-lg font-normal text-gray-900"><span class="font-light text-gray-500">Tuition Cost:</span><br> €<%= number_with_delimiter(batch.tuition_cost.round, :delimiter => ",") %></h6>
+                <h6 class="text-lg font-normal text-gray-900"><span class="font-light" style="color: #0A2540">Tuition Cost:</span><br> €<%= number_with_delimiter(batch.tuition_cost.round, :delimiter => ",") %></h6>
                 </div>
                 <div>
 
