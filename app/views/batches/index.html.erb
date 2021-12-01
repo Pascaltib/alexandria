@@ -56,7 +56,7 @@
 <!-- First time access as a student -->
 
 <% elsif @user.admin == false && @user.bookings.count == 0 && @user.photo.attached? == false %>
-  <section class="pt-20 pb-0 bg-gray-50">
+  <section class="pt-20 pb-0 bg-white">
     <div class="container max-w-6xl mx-auto flex flex-col items-center">
       <h2 class="text-4xl font-bold tracking-tight text-center">
         Welcome <%= @user.first_name %>!
@@ -92,7 +92,7 @@
 
 
   <% elsif @user.admin == false && @user.bookings.count == 0 && @user.photo.attached? %>
-  <section class="pt-20 pb-0 bg-gray-50">
+  <section class="pt-20 pb-0 bg-white">
     <div class="container max-w-6xl mx-auto flex flex-col items-center">
       <h2 class="text-4xl font-bold tracking-tight text-center">
         Welcome <%= @user.first_name %>!
@@ -117,7 +117,7 @@
 
 <% elsif @user.admin == false && @user.bookings.count > 0 %>
 
-  <section class="pt-20 pb-0 bg-gray-50">
+  <section class="pt-20 pb-0 bg-white">
     <div class="container max-w-6xl mx-auto flex flex-col items-center">
       <h2 class="text-4xl font-bold tracking-tight text-left">
         Welcome back <%= @user.first_name %>!
@@ -129,7 +129,7 @@
 
     <div class="grid grid-cols-1 gap-4 mt-2 sm:grid-cols-2 lg:grid-cols-2 w-1/3 mx-auto">
         <% @user.bookings.each do |booking| %>
-            <div class="relative flex flex-col items-center justify-between col-span-3 px-4 py-4 space-y-2 overflow-hidden sm:rounded-xl bg-white shadow-xl border">
+            <div class="relative flex flex-col items-center justify-between col-span-3 px-4 py-4 space-y-2 overflow-hidden sm:rounded-xl bg-white border" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
                 <h6 class="font-medium text-gray-800"><strong>Name:</strong> <%= Batch.find(booking.batch_id).name %></h6>
                 <h6 class="font-medium text-gray-800"><strong>Date:</strong> <%= Batch.find(booking.batch_id).start_date %></h6>
                 <h6 class="font-medium text-gray-800"><strong>Status:</strong>
