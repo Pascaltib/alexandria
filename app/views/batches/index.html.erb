@@ -15,6 +15,7 @@
         </button>
       </div>
       <div class="grid grid-cols-1 gap-4 mt-10 sm:grid-cols-2 lg:grid-cols-2 px-8 w-4/5 mx-auto">
+        <% count = 0 %>
         <% @batches.each do |batch| %>
           <%= link_to batch_path(batch) do %>
             <div class="cohort-card relative flex flex-col items-left justify-around col-span-3 px-4 py-4 space-y-2 overflow-hidden sm:rounded-lg bg-white shadow-md">
@@ -34,13 +35,17 @@
                 <div>
 
                 <!-- Add if statement for profit and loss -->
-                <span class="font-normal text-green-500">Profitable <i class="fas fa-circle animate-pulse"></i> </span>
-                <span class="font-normal text-red-500">Non Profitable <i class="fas fa-circle animate-pulse"></i> </span>
+                <% if @net_income_arr[count] < 0 %>
+                  <span class="font-normal text-red-500">Non Profitable <i class="fas fa-circle animate-pulse"></i> </span>
+                <% else %>
+                  <span class="font-normal text-green-500">Profitable <i class="fas fa-circle animate-pulse"></i> </span>
+                <% end %>
                 <!-- Add if statement for profit and loss -->
                 </div>
                 </div>
               </div>
           <% end %>
+          <% count += 1 %>
         <% end %>
       </div>
     </div>
