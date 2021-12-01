@@ -1,5 +1,5 @@
 body{
-  background-color: #F9FAFB;
+  background-color: #f6f6f6;
 }
 
 .add_cohort_button{
@@ -11,6 +11,7 @@ body{
 .add_cohort_button:hover{
   background-color: #52DBAA;
   opacity: 1;
+  transition: 0.2s;
 }
 
 .cohort-card{
@@ -18,9 +19,9 @@ body{
 }
 
 .cohort-card:hover{
-  background-color: #f6fffc;
-  border: 0.1px solid #dee9ff;
+  background-color: #fbfbfb;
   transition: 0.2s;
+  transform: translate(0px, -4px);
 }
 
 #chart-1 canvas {
@@ -30,4 +31,3 @@ body{
 body {
   margin: 0;
 }
-
