@@ -35,3 +35,18 @@ body {
 #student-card:hover{
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
+
+.dashboard-main-buttons{
+  background-color: #0A2540;
+  transition: 0.2s;
+  }
+
+
+.dashboard-main-buttons:hover{
+  background-color: #204468;
+  transition: 0.2s;
+}
+
+.add-button-form{
+  font-weight: normal !important;
+}
