@@ -2,6 +2,11 @@ class BatchesController < ApplicationController
   def index
     @user = current_user
     @batches = @user.batches
+    @net_income_arr = []
+    @batches.each do |batch|
+      batch_days = batch.end_date - batch.start_date
+      @net_income_arr << net_income_calc(batch, batch_days).round(2)
+    end
     @batch = Batch.new
     @hidden = "hidden"
 
@@ -70,7 +75,7 @@ class BatchesController < ApplicationController
   end
 
   def net_income_calc(batch, days)
-    quantity = @batch.bookings.where(status: "Accepted").count
+    quantity = batch.bookings.where(status: "Accepted").count
     total_fixed_cost = total_fixed_cost_calc(batch, days)
     total_variable_cost = batch.costs.where(kind: "Variable").sum(&:amount)
     variable_revenue = batch.tuition_cost
