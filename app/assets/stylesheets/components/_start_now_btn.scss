@@ -1,13 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Mukta:700');
-
-$black: #0A2540;
-
 @mixin transition($property: all, $duration: 0.45s, $ease: cubic-bezier(0.65,0,.076,1)) {
   transition: $property $duration $ease;
 }
-
-
-
 .learn-more-start-now {
   position: relative;
   display: inline-block;
@@ -18,8 +11,6 @@ $black: #0A2540;
   text-decoration: none;
   background: transparent;
   padding: 0;
-  font-size: inherit;
-  font-family: inherit;
   &.learn-more-start-now {
     width: 12rem;
     height: auto;
@@ -62,7 +53,6 @@ $black: #0A2540;
     .button-text-start-now {
       @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
       position: absolute;
-      font-family: 'Mukta', sans-serif;
       font-size: 1rem;
       top: 0;
       left: 0;
