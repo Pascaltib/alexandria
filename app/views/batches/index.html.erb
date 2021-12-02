@@ -58,10 +58,10 @@
 <% elsif @user.admin == false && @user.bookings.count == 0 && @user.photo.attached? == false %>
   <section class="pt-20 pb-0 bg-white">
     <div class="container max-w-6xl mx-auto flex flex-col items-center">
-      <h2 class="text-4xl font-bold tracking-tight text-center">
+      <h2 class="text-4xl font-medium tracking-normal text-center" style="color: #0A2540">
         Welcome <%= @user.first_name %>!
       </h2>
-      <p class="mt-2 text-lg text-center text-gray-600">
+      <p class="mt-2 text-lg text-center" style="color: #0A2540">
         Please upload a profile picture to continue:
       </p>
 
@@ -94,7 +94,7 @@
   <% elsif @user.admin == false && @user.bookings.count == 0 && @user.photo.attached? %>
   <section class="pt-20 pb-0 bg-white">
     <div class="container max-w-6xl mx-auto flex flex-col items-center">
-      <h2 class="text-4xl font-bold tracking-tight text-center">
+      <h2 class="text-4xl font-medium tracking-normal text-center" style="color: #0A2540">
         Welcome <%= @user.first_name %>!
       </h2>
 
@@ -119,26 +119,30 @@
 
   <section class="pt-20 pb-0 bg-white">
     <div class="container max-w-6xl mx-auto flex flex-col items-center">
-      <h2 class="text-4xl font-bold tracking-tight text-left">
+      <h2 class="text-4xl font-medium tracking-normal text-center mb-2" style="color: #0A2540">
         Welcome back <%= @user.first_name %>!
       </h2>
 
-      <p class="font-medium mt-2 text-lg text-center text-gray-600">
-        Applied Cohort:
-      </p>
+      <div class="box rounded-full p-2 border-2 bg-white m-4 w-32" style="margin-bottom: -60px; z-index: 100;">
+        <%= cl_image_tag @user.photo.key, class: "rounded-full", style: "margin:auto; width: 100%;"%>
+      </div>
 
-    <div class="grid grid-cols-1 gap-4 mt-2 sm:grid-cols-2 lg:grid-cols-2 w-1/3 mx-auto">
+    <div class="grid grid-cols-1 gap-4 mt-2 sm:grid-cols-2 lg:grid-cols-2 w-1/3 mx-auto" style="z-index: 10;">
         <% @user.bookings.each do |booking| %>
-            <div class="relative flex flex-col items-center justify-between col-span-3 px-4 py-4 space-y-2 overflow-hidden sm:rounded-xl bg-white border" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-                <h6 class="font-medium text-gray-800"><strong>Name:</strong> <%= Batch.find(booking.batch_id).name %></h6>
-                <h6 class="font-medium text-gray-800"><strong>Date:</strong> <%= Batch.find(booking.batch_id).start_date %></h6>
-                <h6 class="font-medium text-gray-800"><strong>Status:</strong>
+            <div class="relative flex items-center justify-between col-span-3 px-4 py-4 space-y-2 overflow-hidden sm:rounded-xl bg-white border" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; padding-top: 52px;">
+            <div>
+                <h6 class="text-2xl font-normal" style="color: #0A2540"><%= Batch.find(booking.batch_id).name %></h6>
+                <h6 class="font-normal text-gray-800"><%= Batch.find(booking.batch_id).start_date %></h6>
+                </div>
+                <div class="text-end">
 
                 <% if booking.status == "Pending" %>
-                <h6 class="text-red-400 font-bold"><%= booking.status %></h6></h6>
+                <h6 class="font-normal text-gray-800">Status:
+                <h6 class="text-red-400 font-lighter text-right"><%= booking.status %></h6></h6>
                 <% else %>
-                <h6 class="text-green-400 font-bold text-center">You have been accepted! <br> Congratulations! 🎉</h6></h6>
+                <h6 class="text-green-400 font-lighter text-right"><p>Congratulations!</p> <p>You have been accepted! 🎉</p></h6></h6>
                 <% end %>
+                </div>
 
               </div>
         <% end %>
