@@ -3,22 +3,30 @@
     <div class="flex flex-col items-center md:flex-row justify-center">
       <div class="w-full mt-16 md:mt-0 md:w-2/5">
         <div class="relative z-10 h-auto p-8 py-10 overflow-hidden bg-white border-solid border-2 border-gray-100 rounded-lg px-7">
-          <h6 class="mb-6 text-xl text-gray-700 font-medium text-center">Confirm password to continue </h6>
+          <h6 class="mb-6 text-xl text-gray-700 font-medium text-center">Upload your profile picture</h6>
 
             <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
               <%= f.error_notification %>
 
+
+
               <div class="form-inputs">
+
+
+                <div class="mb-4">
+                <%= f.input :photo, label: false, as: :file, required: true %>
+                </div>
+
                 <%= f.input :current_password,
-                          required: true,
-                          label: false,
-                          placeholder: "Confirm Password",
-                          input_html: { autocomplete: "off" }, class: "block w-full px-4 py-3 mb-4 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-blue-500 focus:outline-none" %>
-                <%= f.input :photo, as: :file, required: true %>
+                            required: true,
+                            label: false,
+                            placeholder: "Confirm Password",
+                            input_html: { autocomplete: "off" }, class: "block w-full px-4 py-3 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-blue-500 focus:outline-none" %>
+
+                <div class="form-actions block">
+                <%= f.button :submit, "Upload", class: "w-full px-3 py-3 text-md bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg" %>
               </div>
 
-              <div class="form-actions block">
-                <%= f.button :submit, "Upload", class: "w-full px-3 py-3 text-md bg-black cursor-pointer hover:bg-gray-600 text-white rounded-lg" %>
               </div>
             <% end %>
 
