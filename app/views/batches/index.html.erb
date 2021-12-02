@@ -132,12 +132,12 @@
 
     <div class="grid grid-cols-1 gap-4 mt-2 sm:grid-cols-2 lg:grid-cols-2 w-1/3 mx-auto" style="z-index: 10;">
         <% @user.bookings.each do |booking| %>
-            <div class="relative flex items-center justify-between col-span-3 px-4 py-4 space-y-2 overflow-hidden sm:rounded-xl bg-white border" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 2px;">
-            <div>
+            <div class="relative flex items-end items-center justify-between col-span-3 px-4 py-4 pt-12 space-y-2 overflow-hidden sm:rounded-xl bg-white border" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 2px;">
+            <div class="items-end">
                 <h6 class="text-2xl font-normal" style="color: #0A2540"><%= Batch.find(booking.batch_id).name %></h6>
-                <h6 class="font-normal text-gray-800"><%= Batch.find(booking.batch_id).start_date %></h6>
+                <h6 class="font-normal" style="color: #0A2540"><%= Batch.find(booking.batch_id).start_date %></h6>
                 </div>
-                <div class="text-end">
+                <div class="items-end">
 
                 <% if booking.status == "Pending" %>
                 <h6 class="font-normal text-gray-800">Status:
