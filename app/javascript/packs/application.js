@@ -29,6 +29,7 @@ import "stylesheets/application";
 import { modalButtons } from '../components/modal_button';
 import { initFlatpickr } from "../plugins/flatpickr";
 import { navbarButton } from "../components/navbar"
+import { congratsBalloons } from "../components/balloons"
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -37,4 +38,5 @@ document.addEventListener('turbolinks:load', () => {
   modalButtons();
   initFlatpickr();
   navbarButton();
+  congratsBalloons();
 });
