@@ -140,7 +140,8 @@
                 <div class="items-end">
 
                 <% if booking.status == "Pending" %>
-
+                <h6 class="font-normal text-gray-800">Status:
+                <h6 class="text-red-400 font-lighter text-right"><%= booking.status %></h6></h6>
                 <% else %>
                 <h6 class="text-green-400 font-lighter text-right"><p>Congratulations!</p> <p>You have been accepted! 🎉</p></h6></h6>
                 <% end %>
