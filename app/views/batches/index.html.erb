@@ -18,7 +18,7 @@
         <% count = 0 %>
         <% @batches.each do |batch| %>
           <%= link_to batch_path(batch) do %>
-            <div class="cohort-card relative flex flex-col items-left justify-around col-span-3 px-4 py-4 space-y-2 overflow-hidden sm:rounded-lg bg-white" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+            <div class="cohort-card relative flex flex-col items-left justify-around col-span-3 px-4 py-4 space-y-2 overflow-hidden sm:rounded-lg bg-white border-2" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 2px;">
               <div class="flex justify-between">
               <div class="h-12 w-12 flex items-center justify-center text-white rounded-full" style="background-color: #0A2540">
                 <h4 class="text-bold"><%= batch.name.chars.first %></h4>
@@ -129,7 +129,7 @@
 
     <div class="grid grid-cols-1 gap-4 mt-2 sm:grid-cols-2 lg:grid-cols-2 w-1/3 mx-auto" style="z-index: 10;">
         <% @user.bookings.each do |booking| %>
-            <div class="relative flex items-center justify-between col-span-3 px-4 py-4 space-y-2 overflow-hidden sm:rounded-xl bg-white border" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; padding-top: 52px;">
+            <div class="relative flex items-center justify-between col-span-3 px-4 py-4 space-y-2 overflow-hidden sm:rounded-xl bg-white border" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 2px;">
             <div>
                 <h6 class="text-2xl font-normal" style="color: #0A2540"><%= Batch.find(booking.batch_id).name %></h6>
                 <h6 class="font-normal text-gray-800"><%= Batch.find(booking.batch_id).start_date %></h6>
