@@ -135,7 +135,7 @@
                 <h6 class="font-medium text-gray-800"><strong>Status:</strong>
 
                 <% if booking.status == "Pending" %>
-                <h6 class="text-red-400 font-bold"><%= booking.status %></h6></h6>
+                <h6 class="text-red-400 font-bold"><%= booking.status %> <i class="fas fa-circle animate-pulse"></i></h6></h6>
                 <% else %>
                 <h6 class="text-green-400 font-bold text-center">You have been accepted! <br> Congratulations! 🎉</h6></h6>
                 <% end %>
