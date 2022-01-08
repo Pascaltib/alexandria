@@ -40,3 +40,7 @@ Style/EmptyMethod:
   Enabled: false
 Bundler/OrderedGems:
   Enabled: false
+MethodLength:
+  Enabled: false
+ClassLength:
+  Enabled: false
